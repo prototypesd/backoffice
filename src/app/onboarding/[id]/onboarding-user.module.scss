@@ -1,0 +1,515 @@
+/* ───────── Kivo · Onboarding de un cliente (solo consulta) ───────── */
+
+$blue: #00aeff;
+$ink: #0b1220;
+$muted: #5b6577;
+$line: #e3e8ef;
+$lineSoft: #eef1f5;
+$field: #d5dbe3;
+$bg: #f5f7fa;
+$green: #1e7a46;
+
+.page {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 28px 32px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Breadcrumb */
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+
+  svg {
+    color: #0077b6;
+  }
+
+  a {
+    color: #0077b6;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      color: #005a8c;
+      text-decoration: underline;
+    }
+  }
+}
+
+.soft {
+  font-weight: 500;
+  color: $muted;
+}
+
+/* ───────── Card base ───────── */
+.card {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 60px;
+  padding: 0 16px 0 20px;
+  background: #fff;
+  border-bottom: 1px solid $line;
+  box-sizing: border-box;
+}
+
+.cardTitle {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: $ink;
+
+  svg {
+    color: #0077b6;
+  }
+}
+
+/* ───────── Hero ───────── */
+.hero {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+}
+
+.heroLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1 1 520px;
+}
+
+.heroAvatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #e6f6ff;
+  color: #005a8c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  flex: none;
+}
+
+.heroData {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.heroNameRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.heroName {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.hdrChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #e6f6ff;
+  color: #005a8c;
+}
+
+.roChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #eef0f3;
+  color: #3f4a5c;
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: $muted;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.metaStrong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f4a5c;
+}
+
+/* ───────── Fila de cards ───────── */
+.cardsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Dónde está */
+.dondeBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.dondeTop {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dondePaso {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #0077b6;
+}
+
+.dondeTitulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: $ink;
+}
+
+.dondeHint {
+  font-size: 13px;
+  color: $muted;
+}
+
+.track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0, 122, 184, 0.16);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #0077b6;
+}
+
+.dondeMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3f4a5c;
+}
+
+/* dl (Registro) */
+.dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  margin: 0;
+}
+
+.dlRow {
+  display: contents;
+
+  > dt {
+    padding: 12px 20px;
+    font-size: 13px;
+    color: $muted;
+    border-bottom: 1px solid $lineSoft;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  > dd {
+    margin: 0;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: $ink;
+    border-bottom: 1px solid $lineSoft;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-sizing: border-box;
+  }
+}
+
+.termLast,
+.defLast {
+  border-bottom: 0 !important;
+}
+
+/* Contacto */
+.contactBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.contactList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: $ink;
+
+    svg {
+      width: 15px;
+      height: 15px;
+      color: #0077b6;
+    }
+  }
+}
+
+.waBtn {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  background: $green;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    background: #16603a;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $blue;
+    outline-offset: 3px;
+  }
+}
+
+.okChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e3f4ea;
+  color: #14603a;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 16px;
+}
+
+/* ───────── Avance del registro ───────── */
+.avance {
+  list-style: none;
+  margin: 0;
+  padding: 20px 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.avanceLi {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 18px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 32px;
+    bottom: 0;
+    width: 2px;
+    border-radius: 2px;
+    background: $field;
+  }
+}
+
+.avanceLast::before {
+  display: none;
+}
+
+.avanceDone::before {
+  background: #bfe3cc;
+}
+
+.avanceCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg;
+  border: 2px solid $field;
+  color: $muted;
+  position: relative;
+  z-index: 1;
+}
+
+.circleDone {
+  background: $green;
+  border-color: $green;
+  color: #fff;
+}
+
+.circleNow {
+  background: #e6f6ff;
+  border-color: #0077b6;
+  color: #005a8c;
+}
+
+.avanceTxt {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  padding-top: 6px;
+
+  strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: $ink;
+  }
+}
+
+.avanceMeta {
+  font-size: 12px;
+  font-weight: 600;
+  color: #14603a;
+}
+
+.avanceMetaNow {
+  font-size: 12px;
+  font-weight: 600;
+  color: #005a8c;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.avanceMetaPend {
+  font-size: 12px;
+  font-weight: 600;
+  color: $muted;
+}
+
+.note {
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 20px 20px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #3f4a5c;
+
+  svg {
+    flex: none;
+    margin-top: 1px;
+    color: #0077b6;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* ───────── Móvil ───────── */
+@media (max-width: 900px) {
+  .page {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .hero {
+    padding: 16px;
+  }
+
+  .heroName {
+    font-size: 22px;
+  }
+
+  .cardsRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Li del paso en curso: acento azul a la izquierda */
+.avanceNow {
+  .avanceTxt strong {
+    color: #005a8c;
+  }
+}

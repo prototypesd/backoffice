@@ -1,0 +1,16 @@
+.appShell {
+  --sidebar-w: 260px;
+
+  min-height: 100vh;
+
+  &[data-collapsed="true"] {
+    --sidebar-w: 76px;
+  }
+}
+
+.appContent {
+  min-width: 0;
+  min-height: 100vh;
+  margin-left: var(--sidebar-w);
+  transition: margin-left 200ms ease;
+}
