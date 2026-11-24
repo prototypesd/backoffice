@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 import Header from "@/components/Header";
-import base from "../solicitudes/solicitudes.module.scss";
+import base from "@/app/nuevas-solicitudes/solicitudes.module.scss";
 import styles from "./onboarding.module.scss";
 
 const steps = [

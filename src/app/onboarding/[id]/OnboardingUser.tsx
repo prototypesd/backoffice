@@ -32,7 +32,7 @@ import {
   Clock,
   ArrowDown,
 } from "lucide-react";
-import { BURO_DEMO, DOCS } from "../../expediente/[id]/demoDocs";
+import { BURO_DEMO, DOCS } from "@/app/nuevas-solicitudes/expediente/[id]/demoDocs";
 import s from "./onboarding.module.scss";
 
 type DocStatus = "pendiente" | "validado" | "reemplazado" | "cargado";
@@ -341,7 +341,7 @@ export default function ExpedienteClient() {
         <header className={s.stack}>
           <nav className={s.crumb} aria-label="Ruta">
             <ChevronLeft size={18} aria-hidden="true" />
-            <Link href="/solicitudes">Solicitudes</Link>
+            <Link href="/nuevas-solicitudes">Solicitudes</Link>
             <span className={s.soft}>/ {code}</span>
           </nav>
 

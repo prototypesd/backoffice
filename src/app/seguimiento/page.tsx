@@ -12,7 +12,7 @@ import {
   CheckCircle2,
   Banknote,
 } from "lucide-react";
-import base from "../solicitudes/solicitudes.module.scss";
+import base from "@/app/nuevas-solicitudes/solicitudes.module.scss";
 import styles from "./seguimiento.module.scss";
 import Header from "@/components/Header";
 

@@ -7,7 +7,7 @@ import {
   X,
 } from "lucide-react";
 
-import base from "../solicitudes/solicitudes.module.scss";
+import base from "@/app/nuevas-solicitudes/solicitudes.module.scss";
 import styles from "./cobros-reportes.module.scss";
 import Header from "@/components/Header";
 
@@ -174,7 +174,7 @@ export default function CobrosReportesPage() {
 
         <div className={styles.content}>
           <div className={styles.breadcrumb}>
-            <Link href="/solicitudes">Inicio</Link>
+            <Link href="/nuevas-solicitudes">Inicio</Link>
             <span>/</span>
             <span>Cobros y reportes</span>
           </div>
