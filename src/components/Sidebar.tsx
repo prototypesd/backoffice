@@ -32,7 +32,7 @@ const NAVIGATION: NavSection[] = [
   {
     title: "Principal",
     items: [
-      { label: "Solicitudes recibidas", href: "/solicitudes", icon: Home },
+      { label: "Solicitudes recibidas", href: "/nuevas-solicitudes", icon: Home },
       { label: "Onboarding", href: "/onboarding", icon: ClipboardList },
       { label: "Seguimiento", href: "/seguimiento", icon: Search },
     ],
@@ -47,7 +47,6 @@ const NAVIGATION: NavSection[] = [
     title: "Atención asistida",
     items: [
       { label: "Calculadora de préstamos", href: "/calculadora-prestamos", icon: Calculator },
-      { label: "Nueva solicitud", href: "/solicitudes", icon: Plus, highlighted: true },
     ],
   },
 ];
@@ -55,7 +54,7 @@ const NAVIGATION: NavSection[] = [
 // Rutas que "pertenecen" a una sección aunque su path sea distinto.
 const ACTIVE_ALIAS: Record<string, string> = {
   // El expediente de solicitud se abre desde "Solicitudes recibidas".
-  "/expediente": "/solicitudes",
+  "/nuevas-solicitudes/expediente": "/nuevas-solicitudes",
 };
 
 function isActive(pathname: string | null, href: string) {
@@ -135,6 +134,13 @@ export function SidebarView({
           </div>
         ))}
       </nav>
+
+      <div className={styles.ctaWrap}>
+        <Link href="/nuevas-solicitudes" className={styles.cta} aria-label="Nueva solicitud" data-tooltip="Nueva solicitud">
+          <Plus size={18} className={styles.icon} aria-hidden="true" />
+          <span className={styles.label}>Nueva solicitud</span>
+        </Link>
+      </div>
     </aside>
   );
 }

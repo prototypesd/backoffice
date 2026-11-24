@@ -1,10 +1,6 @@
-import { Suspense } from "react";
-import ExpedienteClient from "./ExpedienteClient";
+import { redirect } from "next/navigation";
 
-export default function Page() {
-  return (
-    <Suspense fallback={<div style={{ padding: 32 }}>Cargando expediente...</div>}>
-      <ExpedienteClient />
-    </Suspense>
-  );
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  redirect(`/nuevas-solicitudes/expediente/${encodeURIComponent(id)}`);
 }

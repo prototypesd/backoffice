@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 
-import base from "../solicitudes/solicitudes.module.scss";
+import base from "@/app/nuevas-solicitudes/solicitudes.module.scss";
 
 export default function SeguimientoShell({
   children,
