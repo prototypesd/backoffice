@@ -1,0 +1,502 @@
+$bg: #f5f7fa;
+$blue: #00aeff;
+$blue-400: #55c9ff;
+$orange: #ff9900;
+$text: #0b1220;
+$text-soft: #5b6577;
+$border: rgba(11, 18, 32, 0.06);
+$transition: 0.2s ease;
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  min-height: 64px;
+  padding: 8px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: $bg;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: $text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.menuToggle,
+.iconBtn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: $text;
+  transition: background $transition;
+}
+
+.menuToggle:hover,
+.iconBtn:hover,
+.iconBtn[aria-expanded="true"] {
+  background: #e8edf3;
+}
+
+.menuToggle:focus-visible,
+.iconBtn:focus-visible,
+.userBtn:focus-visible {
+  outline: 2px solid $blue;
+  outline-offset: 2px;
+}
+
+.badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: $orange;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px $bg;
+}
+
+.userBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 10px 0 6px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  color: $text;
+  transition: background $transition;
+
+  &:hover,
+  &[aria-expanded="true"] {
+    background: #e8edf3;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  svg {
+    transition: transform $transition;
+  }
+
+  .chevronUp {
+    transform: rotate(180deg);
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #111111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.who {
+  strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: $text;
+  }
+
+  small {
+    display: block;
+    font-size: 12px;
+    color: $text-soft;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 720px) {
+    display: none;
+  }
+}
+
+/* ───────── Popover de notificaciones ───────── */
+.notifWrap {
+  position: relative;
+}
+
+.notif {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: -8px;
+  width: 380px;
+  max-width: calc(100vw - 24px);
+  background: #fff;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow: 0 0 0 1px $border, 0 20px 40px -12px rgba(11, 18, 32, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.98);
+  transform-origin: top right;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 22px;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    transform: rotate(45deg);
+    border-radius: 3px 0 0 0;
+    box-shadow: -1px -1px 0 $border;
+  }
+}
+
+.notifOpen {
+  visibility: visible;
+  animation: kivoPopIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.notifHead {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 8px;
+
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: $text;
+  }
+}
+
+.linkBtn {
+  border: 0;
+  background: none;
+  padding: 6px 8px;
+  margin: -6px -8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0077b3;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  &:hover {
+    background: #e6f6ff;
+  }
+}
+
+.notifList {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 4px 8px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+/* no leída: fondo celeste tenue */
+.notifItem {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  color: $text;
+  background: #f2faff;
+
+  &:hover {
+    background: #e6f6ff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $blue;
+    outline-offset: -2px;
+  }
+}
+
+/* leída: fondo plano */
+.notifItemRead {
+  background: transparent;
+
+  &:hover {
+    background: $bg;
+  }
+}
+
+.notifIco {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #d4f1ff;
+  color: $text;
+  display: grid;
+  place-items: center;
+}
+
+.notifTxt {
+  flex: 1;
+  min-width: 0;
+
+  strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  > span {
+    display: block;
+    font-size: 13px;
+    color: $text-soft;
+    margin-top: 2px;
+  }
+
+  time {
+    display: block;
+    font-size: 12px;
+    color: $text-soft;
+    margin-top: 4px;
+  }
+}
+
+.notifDot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: $blue;
+}
+
+.notifItemRead .notifDot {
+  visibility: hidden;
+}
+
+.notifFoot {
+  position: relative;
+  padding: 8px 20px 14px;
+  text-align: center;
+}
+
+/* Estado vacío */
+.notifEmpty {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 32px 20px;
+  text-align: center;
+
+  strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text;
+  }
+
+  > span {
+    font-size: 13px;
+    color: $text-soft;
+  }
+}
+
+.notifEmptyIco {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  background: #d4f1ff;
+  color: $text;
+  display: grid;
+  place-items: center;
+}
+
+/* ───────── Menú de usuario ───────── */
+.userWrap {
+  position: relative;
+}
+
+.userMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 260px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow: 0 0 0 1px $border, 0 20px 40px -12px rgba(11, 18, 32, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.92);
+  transform-origin: top right;
+  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s;
+}
+
+.userMenuOpen {
+  visibility: visible;
+  animation: kivoPopBounce 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.userMenuHead {
+  padding: 10px 12px 12px;
+
+  span {
+    display: block;
+    font-size: 12px;
+    color: $text-soft;
+  }
+
+  strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 2px;
+    color: $text;
+    overflow-wrap: anywhere;
+  }
+}
+
+.userMenuSep {
+  height: 1px;
+  margin: 6px 4px;
+  background: #edf0f4;
+}
+
+.userMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: $text;
+  text-align: left;
+  transition: background $transition;
+
+  &:hover {
+    background: $bg;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $blue;
+    outline-offset: -2px;
+  }
+}
+
+.userMenuItemDanger {
+  color: #b42318;
+
+  &:hover {
+    background: #fef3f2;
+  }
+}
+
+/* ───────── Animaciones ───────── */
+/* entrada con rebote: cae, se pasa un poco y se asienta */
+@keyframes kivoPopBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.8);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translateY(3px) scale(1.05);
+  }
+
+  75% {
+    transform: translateY(-1px) scale(0.99);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* entrada suave para el popover de notificaciones (más grande, rebote ligero) */
+@keyframes kivoPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.92);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(2px) scale(1.015);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topbar,
+  .notif,
+  .userMenu,
+  .notifOpen,
+  .userMenuOpen {
+    transition: none;
+    animation: none;
+  }
+}

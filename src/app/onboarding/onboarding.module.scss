@@ -1,0 +1,793 @@
+/* ───────── Kivo · Onboarding (mismo lenguaje visual que Solicitudes) ───────── */
+
+$blue: #00aeff;
+$link: #0077b6;
+$orange: #ff9900;
+$orange-hover: #f08c00;
+$ink: #0b1220;
+$muted: #5b6577;
+$line: #e3e8ef;
+$field: #d5dbe3;
+$bg: #f5f7fa;
+
+/* Sin fuente propia: hereda Inter del body */
+.shell {
+  min-height: 100vh;
+  background: $bg;
+  color: $ink;
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+.main {
+  min-height: 100vh;
+  background: $bg;
+}
+
+.content {
+  padding: 24px 32px 48px;
+}
+
+/* ───────── Encabezado ───────── */
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.headingActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.totalBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid $line;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: $muted;
+  white-space: nowrap;
+}
+
+.assistanceButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid $field;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: $ink;
+  white-space: nowrap;
+
+  &:hover {
+    background: $bg;
+  }
+}
+
+/* ───────── Cards de pasos (= cards de Solicitudes) ───────── */
+.stepCards {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stepCard {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  min-height: 116px;
+  padding: 18px 20px;
+  text-align: left;
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  color: $ink;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus-visible {
+    outline: 2px solid $blue;
+    outline-offset: 3px;
+  }
+
+  > strong {
+    position: relative;
+    z-index: 1;
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  > b {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-top: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  > small {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-top: 8px;
+    max-width: 62%;
+    font-size: 12px;
+    line-height: 1.35;
+    color: $muted;
+  }
+
+  &:hover,
+  &.selected {
+    background: #111111;
+    border-color: #111111;
+    color: #fff;
+
+    > small {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .stepIcon {
+      background: $blue;
+      color: #fff;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -14px rgba(11, 18, 32, 0.4);
+  }
+
+  &.selected {
+    box-shadow: 0 0 0 2px $blue;
+  }
+}
+
+/* ya no se resalta con borde naranja */
+.hasClients {
+}
+
+.stepIcon {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 92px;
+  height: 84px;
+  padding: 0 6px 6px 0;
+  border-radius: 32px 28px 0 26px;
+  display: grid;
+  place-items: center;
+  color: $ink;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  svg {
+    display: block;
+  }
+}
+
+.blue { background: #d4f1ff; }
+.purple { background: #e9e7fb; }
+.orange { background: #ffeed4; }
+.pink { background: #fbe7ea; }
+.green { background: #e7f6ec; }
+
+/* ───────── Panel: filtros + tabla se ven como una sola card ───────── */
+.filters {
+  display: grid;
+  gap: 14px;
+  padding: 20px 24px 16px;
+  background: #fff;
+  border: 1px solid $line;
+  border-bottom: 0;
+  border-radius: 18px 18px 0 0;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 6px 0 14px;
+  border: 1px solid $field;
+  border-radius: 12px;
+  background: #fff;
+  color: $muted;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus-within {
+    border-color: $blue;
+    box-shadow: 0 0 0 3px rgba(0, 174, 255, 0.18);
+  }
+
+  svg {
+    flex: none;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: 0;
+    outline: none;
+    background: none;
+    font-size: 14px;
+    color: $ink;
+
+    &::placeholder {
+      color: $muted;
+    }
+  }
+
+  button {
+    height: 36px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 9px;
+    background: $orange;
+    color: #090909;
+    font-size: 14px;
+    font-weight: 600;
+
+    &:hover {
+      background: $orange-hover;
+    }
+  }
+}
+
+.filterGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) auto;
+  gap: 16px;
+  align-items: end;
+
+  label {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: $ink;
+  }
+
+  select {
+    width: 100%;
+    height: 40px;
+    padding: 0 36px 0 12px;
+    border: 1px solid $field;
+    border-radius: 10px;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6577' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    appearance: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: $ink;
+    cursor: pointer;
+    outline: none;
+
+    &:hover {
+      border-color: #b8c2d0;
+    }
+
+    &:focus {
+      border-color: $blue;
+      box-shadow: 0 0 0 3px rgba(0, 174, 255, 0.18);
+    }
+
+    &:disabled {
+      background-color: $bg;
+      color: #a3acba;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.clearButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: $link;
+  white-space: nowrap;
+
+  &:hover {
+    background: #e6f6ff;
+  }
+}
+
+.tablePanel {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
+}
+
+.tableHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid $line;
+
+  h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: $ink;
+  }
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: $muted;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  i {
+    display: inline-block;
+    width: 16px;
+    height: 4px;
+    border-radius: 2px;
+  }
+}
+
+/* convención: hecho = verde, actual = azul, pendiente = gris */
+.previous { background: #1fa855; }
+.current { background: $blue; }
+.pending { background: $line; }
+
+.tableScroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ───────── Tabla (= tabla de Solicitudes) ───────── */
+.tablePanel table {
+  width: 100%;
+  min-width: 1240px;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+
+  th {
+    padding: 14px 16px;
+    background: $bg;
+    font-size: 13px;
+    font-weight: 600;
+    color: $muted;
+    white-space: nowrap;
+    border-top: 1px solid $line;
+    border-bottom: 1px solid $line;
+  }
+
+  td {
+    padding: 16px;
+    vertical-align: middle;
+    font-size: 14px;
+    color: $ink;
+    white-space: nowrap;
+    border-top: 1px solid $line;
+
+    strong {
+      display: block;
+      font-weight: 600;
+    }
+
+    small {
+      display: block;
+      margin-top: 2px;
+      font-size: 13px;
+      color: $muted;
+    }
+  }
+
+  tbody tr:first-child td {
+    border-top: 0;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 24px;
+  }
+
+  th:last-child,
+  td:last-child {
+    padding-right: 24px;
+    text-align: right;
+  }
+
+  /* Contacto: número normal, no negrita */
+  td:nth-child(4) strong {
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Monto a la derecha con dígitos tabulares */
+  th:nth-child(6),
+  td:nth-child(6) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Estado: chip con puntito (= chipInfo de Solicitudes) + pasos */
+.onboardingStatus {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.statusLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 8px;
+  border-radius: 999px;
+  background: #e6f6ff;
+  color: #005a8c;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+}
+
+.statusProgress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusSegments {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  span {
+    display: block;
+    width: 9px;
+    height: 4px;
+    border-radius: 2px;
+  }
+}
+
+.segmentDone { background: #1fa855; }
+.segmentCurrent { background: $blue; }
+.segmentActive { background: $blue; }
+.segmentPending { background: $line; }
+
+.statusCount {
+  font-size: 12px;
+  color: $muted;
+  white-space: nowrap;
+}
+
+/* Acciones (= botón "Ver expediente" de Solicitudes) */
+.expedienteButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  margin-right: 8px;
+  padding: 0 14px;
+  border: 1px solid $field;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: $ink;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  &:hover {
+    background: $bg;
+    border-color: #b8c2d0;
+  }
+}
+
+.whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
+  background: #20c968;
+  color: #fff;
+  vertical-align: middle;
+
+  &:hover {
+    background: #16b65b;
+  }
+}
+
+.empty {
+  padding: 48px 24px !important;
+  text-align: center !important;
+  color: $muted !important;
+  white-space: normal !important;
+}
+
+/* Pie (= pie de Solicitudes) */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 24px;
+  border-top: 1px solid $line;
+  font-size: 13px;
+  color: $muted;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  button {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid $field;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    color: $ink;
+
+    &:hover:not(:disabled) {
+      background: $bg;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* ───────── Diálogo y toast ───────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(11, 18, 32, 0.45);
+}
+
+.dialog {
+  width: 100%;
+  max-width: 470px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 24px 48px -16px rgba(11, 18, 32, 0.35);
+}
+
+.dialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid $line;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  button {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: $ink;
+
+    &:hover {
+      background: $bg;
+    }
+  }
+}
+
+.dialogBody {
+  padding: 20px 24px;
+  font-size: 14px;
+
+  strong {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 10px 0;
+    color: $muted;
+  }
+}
+
+.notice {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #e6f6ff;
+  color: #005a8c;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.dialogFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 24px;
+  border-top: 1px solid $line;
+
+  button {
+    height: 40px;
+    padding: 0 16px;
+    border: 1px solid $field;
+    border-radius: 10px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    color: $ink;
+
+    &:hover {
+      background: $bg;
+    }
+  }
+}
+
+.confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0 !important;
+  background: #20c968 !important;
+  color: #fff !important;
+
+  &:hover {
+    background: #16b65b !important;
+  }
+}
+
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: $ink;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 12px 24px -12px rgba(11, 18, 32, 0.5);
+
+  button {
+    display: grid;
+    place-items: center;
+    border: 0;
+    background: transparent;
+    color: #fff;
+  }
+}
+
+/* ───────── Responsive ───────── */
+@media (max-width: 1450px) {
+  .stepCards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .filterGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .content {
+    padding: 16px;
+  }
+
+  .heading {
+    flex-direction: column;
+  }
+
+  .stepCards,
+  .filterGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filters {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .filterGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .headingActions {
+    flex-wrap: wrap;
+  }
+
+  .tableHeading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pagination {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stepCard,
+  .stepIcon {
+    transition: none;
+  }
+
+  .stepCard:hover {
+    transform: none;
+  }
+}
