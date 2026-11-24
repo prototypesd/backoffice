@@ -1,13 +1,6 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f5f7fa;
+  --foreground: #0b1220;
 }
 
 html {
@@ -42,12 +35,6 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
-
 /* Kivo Typography */
 :root {
   --font-family-primary: var(--font-inter), Arial, sans-serif;
@@ -64,4 +51,9 @@ body {
     background-color: #eef7ff !important;
     transition: background-color 0.12s ease;
   }
+}
+
+/* El backoffice es siempre claro */
+html {
+  color-scheme: light;
 }
