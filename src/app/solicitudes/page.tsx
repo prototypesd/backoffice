@@ -37,7 +37,7 @@ type Solicitud = {
   upd: string;
 };
 
-const ALL: Solicitud[] = [
+const DATA: Solicitud[] = [
   { name: "Hugo Soliz", email: "hugo@soydigital.tech", code: "KIVO-OFI-001-2026-TEMP", ci: "", cel: "", ciudad: "", monto: null, tipo: "", estado: "Recopilando datos", step: 1, resp: "", upd: "2026-11-20T19:26" },
   { name: "Carla Mamani", email: "carla.mamani@example.com", code: "KIVO-OFI-002-2026", ci: "6841230 LP", cel: "71234567", ciudad: "La Paz", monto: 8500, tipo: "Dependiente", estado: "Para asignación", step: 6, resp: "", upd: "2026-11-22T09:12" },
   { name: "Juan Pérez", email: "juan.perez@example.com", code: "KIVO-OFI-003-2026", ci: "5129874 LP", cel: "72345678", ciudad: "El Alto", monto: 15000, tipo: "Independiente", estado: "Para asignación", step: 6, resp: "", upd: "2026-11-22T08:40" },
@@ -52,16 +52,15 @@ const ALL: Solicitud[] = [
   { name: "Elena Torrez", email: "elena.torrez@example.com", code: "KIVO-OFI-012-2026", ci: "7896541 LP", cel: "61234567", ciudad: "La Paz", monto: 14000, tipo: "Dependiente", estado: "Para asignación", step: 6, resp: "", upd: "2026-11-14T14:25" },
 ];
 
-/* Solicitudes recibidas: solo las que aún no pasan a Seguimiento */
-const DATA = ALL.filter((r) => r.estado === "Recopilando datos" || r.estado === "Para asignación");
 
 const PAGE = 8;
 
-const CARDS = [
-  { key: "", label: "Todas", desc: "Según los filtros actuales", icon: FileText, tone: "#D4F1FF", off: false },
-  { key: "Recopilando datos", label: "Recopilando datos", desc: "Completando el onboarding", icon: FolderOpen, tone: "#D4F1FF", off: false },
+const CARDS: { key: string; label: string; desc: string; icon: typeof Clock3; tone: string; off: boolean }[] = [
   { key: "Para asignación", label: "Para asignación", desc: "Sin responsable", icon: Clock3, tone: "#FFEED4", off: false },
-] as const;
+  { key: "Observada", label: "Observadas", desc: "Con correcciones pendientes", icon: MessageSquareWarning, tone: "#D4F1FF", off: false },
+  { key: "Derivada", label: "Derivadas", desc: "Pendiente de integración API", icon: Send, tone: "#EEF0F3", off: true },
+  { key: "Rechazada", label: "Rechazadas", desc: "Solicitudes rechazadas", icon: XCircle, tone: "#AAE4FF", off: false },
+];
 
 const CHIP_ESTADO: Record<Estado, string> = {
   "Recopilando datos": styles.chipInfo,
@@ -374,6 +373,8 @@ export default function SolicitudesPage() {
                     <option value="">Todos los estados</option>
                     <option>Recopilando datos</option>
                     <option>Para asignación</option>
+                    <option>Observada</option>
+                    <option>Rechazada</option>
                     
                     
                   </select>
