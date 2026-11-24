@@ -52,15 +52,15 @@ const DATA: Solicitud[] = [
   { name: "Elena Torrez", email: "elena.torrez@example.com", code: "KIVO-OFI-012-2026", ci: "7896541 LP", cel: "61234567", ciudad: "La Paz", monto: 14000, tipo: "Dependiente", estado: "Para asignación", step: 6, resp: "", upd: "2026-11-14T14:25" },
 ];
 
+
 const PAGE = 8;
 
-const CARDS = [
-  { key: "", label: "Todas", desc: "Según los filtros actuales", icon: FileText, tone: "#D4F1FF", off: false },
+const CARDS: { key: string; label: string; desc: string; icon: typeof Clock3; tone: string; off: boolean }[] = [
   { key: "Para asignación", label: "Para asignación", desc: "Sin responsable", icon: Clock3, tone: "#FFEED4", off: false },
   { key: "Observada", label: "Observadas", desc: "Con correcciones pendientes", icon: MessageSquareWarning, tone: "#D4F1FF", off: false },
   { key: "Derivada", label: "Derivadas", desc: "Pendiente de integración API", icon: Send, tone: "#EEF0F3", off: true },
   { key: "Rechazada", label: "Rechazadas", desc: "Solicitudes rechazadas", icon: XCircle, tone: "#AAE4FF", off: false },
-] as const;
+];
 
 const CHIP_ESTADO: Record<Estado, string> = {
   "Recopilando datos": styles.chipInfo,
@@ -375,6 +375,8 @@ export default function SolicitudesPage() {
                     <option>Para asignación</option>
                     <option>Observada</option>
                     <option>Rechazada</option>
+                    
+                    
                   </select>
                 </div>
 
