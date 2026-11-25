@@ -1,0 +1,172 @@
+/* Cabecera de expediente compartida (Solicitudes recibidas, Seguimiento, Onboarding).
+   Valores copiados de nuevas-solicitudes/expediente/[id]/expediente.module.scss */
+
+$blue: #00aeff;
+$ink: #0b1220;
+$muted: #5b6577;
+$line: #e3e8ef;
+$field: #d5dbe3;
+$bg: #f5f7fa;
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+
+  svg { color: #0077b6; }
+
+  a {
+    color: #0077b6;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      color: #005a8c;
+      text-decoration: underline;
+    }
+  }
+}
+
+.soft {
+  font-weight: 500;
+  color: $muted;
+}
+
+.hero {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+}
+
+.heroLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1 1 520px;
+}
+
+.heroAvatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #e6f6ff;
+  color: #005a8c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  flex: none;
+}
+
+.heroData {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.heroNameRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.heroName {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: $ink;
+}
+
+.hdrChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+.meta,
+.metaStrong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+
+  svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.meta { color: $muted; }
+
+.metaStrong {
+  font-weight: 600;
+  color: #3f4a5c;
+}
+
+.btn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1px solid $field;
+  background: #fff;
+  color: $ink;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &:hover { background: $bg; }
+
+  &:focus-visible {
+    outline: 2px solid $blue;
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero { padding: 16px; }
+  .heroName { font-size: 22px; }
+}
