@@ -1,0 +1,183 @@
+// Paleta Kivo — reemplaza por tus variables globales si ya existen.
+$blue: #00aeff;
+$blue-100: #d4f1ff;
+$blue-50: #eef9ff;
+$orange: #ff9900;
+$orange-100: #ffeed4;
+$green: #1f9d55;
+$green-100: #e3f5ea;
+$red: #d93636;
+$red-100: #fde8e8;
+$ink: #000;
+$text-2: #5f6368;
+$text-3: #9aa0a6;
+$border: #e8eaed;
+$white: #fff;
+
+.card {
+  background: $white;
+  border: 1px solid $border;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid $border;
+
+  h2 { margin: 0; font-size: 14px; font-weight: 600; color: $ink; }
+}
+
+.readonly {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: $text-2;
+}
+
+.pasos { list-style: none; margin: 0; padding: 0; }
+
+.paso {
+  border-bottom: 1px solid $border;
+  &:last-child { border-bottom: none; }
+  &.actual { background: $blue-50; box-shadow: inset 3px 0 0 $blue; }
+  &.rechazado { background: $red-100; box-shadow: inset 3px 0 0 $red; }
+}
+
+.pasoHeader {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 220px 180px 20px;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 20px;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+
+  &:hover { background: rgba(0, 0, 0, 0.02); }
+  &:focus-visible { outline: 2px solid $blue; outline-offset: -2px; }
+  &[aria-expanded='true'] .chevron { transform: rotate(180deg); }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 28px minmax(0, 1fr) 20px;
+    .dato { display: none; }
+  }
+}
+
+.chevron { color: $text-3; transition: transform 0.15s ease; }
+
+.pasoTitulo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  strong { font-size: 14px; color: $ink; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+  small { font-size: 12px; color: $text-2; }
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  small { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: $text-3; }
+  strong { font-size: 13px; color: $ink; }
+}
+
+.marcador {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.m_hecho { background: $green; color: $white; }
+.m_actual { background: $blue; color: $white; }
+.m_pendiente { border: 1px solid $border; color: $text-3; }
+.m_rechazado { background: $red; color: $white; }
+
+.chip {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.chipAccent { background: $blue-100; color: #00618f; }
+.chipWarning { background: $orange-100; color: #8a5300; }
+.chipDanger { background: $red-100; color: $red; }
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 20px 20px 64px;
+}
+
+.evento {
+  position: relative;
+  padding: 0 0 18px 22px;
+  border-left: 2px solid $border;
+  margin-left: 6px;
+  &:last-child { border-left-color: transparent; padding-bottom: 0; }
+}
+
+.punto {
+  position: absolute;
+  left: -8px;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: $white;
+  border: 2px solid $border;
+}
+.ev_hecho .punto { background: $green; border-color: $green; }
+.ev_actual .punto { background: $blue; border-color: $blue; }
+.ev_rechazado .punto { background: $red; border-color: $red; }
+.ev_hecho.ev_observado .punto { background: $orange; border-color: $orange; }
+
+.eventoTitulo {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: $ink;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  .ev_pendiente & { color: $text-3; font-weight: 500; }
+}
+
+.meta { margin: 2px 0 0; font-size: 12px; color: $text-2; .ev_pendiente & { color: $text-3; } }
+
+.motivo {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: $ink;
+  background: $white;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 6px 10px;
+  span { color: $text-3; margin-right: 6px; }
+}
+
+.requisitos {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  li { display: flex; align-items: center; gap: 6px; color: $ink; }
+}
+.req_aceptado svg { color: $green; }
+.req_observado svg { color: $orange; }
+.req_recibido svg { color: $blue; }
+.req_pendiente svg { color: $text-3; }

@@ -9,14 +9,13 @@ import {
   Wallet,
   UserRoundCheck,
   ClipboardCheck,
-  MapPin,
-  Phone,
-  Mail,
-  UserRound,
   ArrowLeft,
 } from "lucide-react";
 
 import styles from "./seguimiento-expediente.module.scss";
+import ExpedienteHeader from "@/components/ExpedienteHeader";
+import ExpedienteAvance from "../../../components/seguimiento/ExpedienteAvance";
+import { historialMock, requisitosMock } from "../../../components/seguimiento/mock";
 
 type Estado = "completado" | "actual" | "pendiente";
 
@@ -214,6 +213,14 @@ const expedientes: Record<string, Expediente> = {
   },
 };
 
+// Historial FLU de prueba por solicitud. Las que no estén aquí usan la vista anterior.
+const historiales: Record<
+  string,
+  { historial: typeof historialMock; requisitos: typeof requisitosMock }
+> = {
+  "KIVO-WEB-001-2026-LP": { historial: historialMock, requisitos: requisitosMock },
+};
+
 const iconos = [
   ClipboardCheck,
   UserRoundCheck,
@@ -244,6 +251,12 @@ function tintaEstado(estado: string) {
   return ESTADO_TINTA[estado.split(" ·")[0]] ?? ESTADO_TINTA["En trámite"];
 }
 
+function canalDe(id: string) {
+  if (id.includes("-WEB-")) return "Onboarding web";
+  if (id.includes("-OFI-")) return "Oficina";
+  return undefined;
+}
+
 export default function SeguimientoExpediente({
   id,
 }: {
@@ -271,64 +284,25 @@ export default function SeguimientoExpediente({
   const finalizado = expediente.estado === "Desembolsada";
 
   const tinta = tintaEstado(expediente.estado);
+  const timeline = historiales[expediente.id];
 
   return (
     <SeguimientoShell>
       <main className={styles.page}>
-      <header className={styles.heading}>
-        <div className={styles.titleGroup}>
-          <span
-            className={styles.chip}
-            style={{ background: tinta.bg, color: tinta.fg }}
-          >
-            <i
-              className={styles.chipDot}
-              style={{ background: tinta.dot }}
-              aria-hidden="true"
-            />
-            {expediente.estado}
-          </span>
-          <h1>Solicitud {expediente.id}</h1>
-        </div>
+      <ExpedienteHeader
+        volver={{ href: "/seguimiento", label: "Seguimiento" }}
+        nombre={expediente.nombre}
+        codigo={expediente.id}
+        estado={{ label: expediente.estado, bg: tinta.bg, color: tinta.fg }}
+        ci={expediente.ci}
+        telefono={expediente.telefono}
+        email={expediente.email}
+        ciudad={expediente.ciudad}
+        recibida={expediente.fechas[0]}
+        canal={canalDe(expediente.id)}
+      />
 
-        <Link href="/seguimiento" className={styles.back}>
-          Volver a Seguimiento
-        </Link>
-      </header>
-
-      <section className={styles.clientCard}>
-        <div className={styles.avatar}>
-          {expediente.nombre
-              .split(" ")
-              .map((w) => w[0])
-              .slice(0, 2)
-              .join("")}
-        </div>
-
-        <div className={styles.clientInformation}>
-          <h2>{expediente.nombre}</h2>
-
-          <div className={styles.meta}>
-            <span>
-              <UserRound size={13} />
-              CI {expediente.ci}
-            </span>
-            <span>
-              <Phone size={13} />
-              {expediente.telefono}
-            </span>
-            <span>
-              <Mail size={13} />
-              {expediente.email}
-            </span>
-            <span>
-              <MapPin size={13} />
-              {expediente.ciudad}
-            </span>
-          </div>
-        </div>
-      </section>
-
+      {!timeline && (
       <section className={styles.card}>
         <div className={styles.cardHeader}>
           <strong>Avance del trámite</strong>
@@ -379,7 +353,14 @@ export default function SeguimientoExpediente({
           })}
         </div>
       </section>
+      )}
 
+      {timeline ? (
+        <ExpedienteAvance
+          historial={timeline.historial}
+          requisitos={timeline.requisitos}
+        />
+      ) : (
       <section className={styles.card}>
         <div className={styles.cardHeader}>
           <strong>Detalle por paso</strong>
@@ -449,6 +430,7 @@ export default function SeguimientoExpediente({
           })}
         </div>
       </section>
+      )}
       <p className={styles.disclaimer}>
         Datos y secuencia de demostración. Las fechas,
         responsables y etapas deben validarse con la API de Kivo.
