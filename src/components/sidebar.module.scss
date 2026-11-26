@@ -314,3 +314,210 @@ $transition: 200ms ease;
 .collapsed .ctaWrap {
   padding: 12px 0 16px;
 }
+
+/* ===== KIVO: SIDEBAR LOGOUT V1 ===== */
+
+.sidebar .ctaWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar .logout {
+  height: 42px;
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+
+  &:hover {
+    background: #ffffff;
+    color: #111111;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #00aeff;
+    outline-offset: 2px;
+  }
+
+  svg {
+    color: currentColor;
+  }
+}
+
+.collapsed .ctaWrap .logout {
+  width: 52px;
+  height: 42px;
+  margin: 0 auto;
+  padding: 0;
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar .logout {
+    transition: none;
+  }
+}
+
+/* ===== KIVO: LOGOUT CONFIRMATION V2 ===== */
+
+.sidebar .logout {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: inherit;
+}
+
+.logoutDialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  width: min(420px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+
+  border: 1px solid #e3e8ef;
+  border-radius: 18px;
+  background: #ffffff;
+  color: #111111;
+
+  font-family: var(--font-inter), Arial, sans-serif;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .25);
+
+  &::backdrop {
+    background: rgba(0, 0, 0, .48);
+    backdrop-filter: blur(3px);
+  }
+
+  &[open] {
+    animation: logoutAppear .2s ease-out both;
+  }
+}
+
+.logoutDialogBody {
+  padding: 26px;
+
+  h2 {
+    margin: 20px 0 0;
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: -.025em;
+    color: #111111;
+  }
+
+  p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: #5b6577;
+  }
+}
+
+.logoutDialogTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logoutDialogIcon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  background: #f0f2f5;
+  color: #111111;
+  border-radius: 12px;
+}
+
+.logoutDialogClose {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  color: #6b7380;
+  cursor: pointer;
+
+  &:hover {
+    background: #f0f2f5;
+    color: #111111;
+  }
+}
+
+.logoutDialogActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.logoutCancel,
+.logoutConfirm {
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .18s, color .18s;
+}
+
+.logoutCancel {
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #d5dbe3;
+
+  &:hover {
+    background: #f0f2f5;
+  }
+}
+
+.logoutConfirm {
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid #111111;
+
+  &:hover {
+    background: #ffffff;
+    color: #111111;
+  }
+}
+
+.logoutDialog button:focus-visible {
+  outline: 2px solid #00aeff;
+  outline-offset: 3px;
+}
+
+@keyframes logoutAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoutDialog[open] {
+    animation: none;
+  }
+
+  .logoutCancel,
+  .logoutConfirm {
+    transition: none;
+  }
+}

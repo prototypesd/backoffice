@@ -3211,3 +3211,4429 @@ $white: #fff;
     width: 80px;
   }
 }
+
+/* ===== KIVO: AVANCE MINIMAL ===== */
+
+.amCard {
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 24px 28px 26px;
+  background: #fff;
+  border: 1px solid #e3e8ef;
+  border-radius: 18px;
+  font-family: inherit;
+}
+
+.amHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  h2 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #5b6577;
+  }
+}
+
+.amClosed {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fdecea;
+  color: #b3261e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.amScroll {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.amSteps {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.amItem {
+  position: relative;
+  min-width: 0;
+}
+
+.amLine {
+  position: absolute;
+  top: 23px;
+  left: calc(50% + 21px);
+  right: calc(-50% + 21px);
+  height: 3px;
+  overflow: hidden;
+  background: #dadde4;
+  pointer-events: none;
+  z-index: 1;
+
+  i {
+    position: absolute;
+    inset: 0;
+    background: #00aeff;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform .38s ease-out;
+  }
+}
+
+.amLineDone i {
+  transform: scaleX(1);
+}
+
+.amStep {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 8px;
+  padding: 2px 6px 4px;
+  text-align: center;
+}
+
+.amDot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2.5px solid #dadde4;
+  color: #7b8493;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+
+  transition:
+    background .3s ease,
+    border-color .3s ease,
+    color .3s ease;
+
+  svg {
+    display: block;
+  }
+}
+
+.amLabel {
+  display: block;
+
+  strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: #747e8c;
+    transition: color .3s ease;
+  }
+
+  small {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #5b6577;
+  }
+}
+
+/* Etapas completadas */
+
+.am_hecho {
+  .amDot {
+    background: #111111;
+    border-color: #00aeff;
+    color: #fff;
+  }
+
+  .amLabel strong {
+    color: #0b1220;
+    font-weight: 600;
+  }
+}
+
+/* Etapa actual */
+
+.am_actual {
+  .amDot {
+    background: #111111;
+    border-color: #00aeff;
+    color: #fff;
+  }
+
+  .amLabel strong {
+    color: #0b1220;
+    font-weight: 700;
+  }
+
+  .amLabel small {
+    color: #0077b6;
+    font-weight: 500;
+  }
+}
+
+/* Etapa rechazada */
+
+.am_rechazado {
+  .amDot {
+    background: #b3261e;
+    border-color: #b3261e;
+    color: #fff;
+  }
+
+  .amLabel strong,
+  .amLabel small {
+    color: #b3261e;
+    font-weight: 600;
+  }
+}
+
+.amSrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Mantener el avance horizontal en pantallas pequeñas */
+
+@media (max-width: 980px) {
+  .amCard {
+    padding: 20px 16px;
+  }
+
+  .amSteps {
+    min-width: 650px;
+    padding-bottom: 6px;
+  }
+
+  .amLabel strong {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .amDot,
+  .amLabel strong,
+  .amLine i {
+    transition: none;
+  }
+}
+
+/* ===== KIVO: STAGE CARDS V3 ===== */
+
+/* Mismo lenguaje visual de Solicitudes recibidas */
+
+.hwCard .hwNavigation {
+  padding: 20px 24px 18px;
+}
+
+.hwCard .hwTabs {
+  gap: 16px;
+}
+
+.hwCard .hwTab {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0;
+
+  width: 100%;
+  height: 100%;
+  min-height: 128px;
+  box-sizing: border-box;
+  padding: 16px 18px;
+
+  background: #fff;
+  border: 1px solid #e3e8ef;
+  border-radius: 18px;
+  color: #0b1220;
+  text-align: left;
+
+  transition:
+    transform .15s ease,
+    background .15s ease,
+    border-color .15s ease,
+    color .15s ease,
+    box-shadow .15s ease;
+}
+
+/* Título superior */
+
+.hwCard .hwTabTitle {
+  order: 1;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  color: #0b1220;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+/* Número grande de etapa */
+
+.hwCard .hwTabNumber {
+  order: 2;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 10px;
+  color: #0b1220;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+/* Estado inferior */
+
+.hwCard .hwTab > small {
+  order: 3;
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 9px;
+  max-width: 65%;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* Figura decorativa de Kivo */
+
+.hwCard .hwCardBlob {
+  position: absolute;
+  z-index: 0;
+  right: -6px;
+  bottom: -6px;
+  width: 86px;
+  height: 82px;
+
+  border-radius: 32px 28px 0 26px;
+  background: #d4f1ff;
+
+  transition:
+    transform .2s ease,
+    background .15s ease;
+
+  transform-origin: bottom right;
+  pointer-events: none;
+}
+
+/* Colores según estado real */
+
+.hwCard .hwCardBlob_hecho {
+  background: #e5f4eb;
+}
+
+.hwCard .hwCardBlob_actual {
+  background: #d4f1ff;
+}
+
+.hwCard .hwCardBlob_pendiente {
+  background: #eef0f3;
+}
+
+.hwCard .hwCardBlob_rechazado {
+  background: #fdecea;
+}
+
+/* Icono grande en esquina inferior derecha */
+
+.hwCard .hwStageIcon {
+  position: absolute;
+  z-index: 1;
+  right: 15px;
+  bottom: 13px;
+
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: #0b1220;
+  pointer-events: none;
+
+  transition: color .15s ease;
+
+  svg {
+    display: block;
+    width: 36px;
+    height: 36px;
+    stroke-width: 2.1;
+  }
+}
+
+/* Hover igual al módulo Solicitudes recibidas */
+
+.hwCard .hwTab:hover {
+  background: #111111;
+  border-color: #111111;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -14px #7b8493;
+}
+
+/* Selección */
+
+.hwCard .hwTabSelected,
+.hwCard .hwTabSelected:hover {
+  background: #111111;
+  border-color: #111111;
+  color: #fff;
+  box-shadow: 0 0 0 2px #00aeff;
+}
+
+.hwCard .hwTab:hover,
+.hwCard .hwTabSelected {
+  .hwTabTitle,
+  .hwTabNumber,
+  .hwStageIcon {
+    color: #fff;
+  }
+
+  > small {
+    color: #d5dbe3;
+  }
+
+  > .hwText_hecho {
+    color: #a6e8b9;
+  }
+
+  > .hwText_actual {
+    color: #aae4ff;
+  }
+
+  > .hwText_rechazado {
+    color: #ffb4b4;
+  }
+
+  .hwCardBlob {
+    background: #00aeff;
+  }
+}
+
+/* Ahora: ubicación real del expediente */
+
+.hwCard .hwNow {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  right: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: #e6f6ff;
+  color: #005a8c;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Reservar espacio para evitar superposición */
+
+.hwCard .hwTab:has(.hwNow) .hwTabTitle {
+  padding-right: 52px;
+  box-sizing: border-box;
+}
+
+.hwCard .hwTab:hover .hwNow,
+.hwCard .hwTabSelected .hwNow {
+  background: #30343a;
+  color: #aae4ff;
+}
+
+/* Accesibilidad */
+
+.hwCard .hwTab:focus-visible {
+  outline: 2px solid #00aeff;
+  outline-offset: 4px;
+}
+
+/* Responsive */
+
+@media (max-width: 1400px) and (min-width: 901px) {
+  .hwCard .hwTabs {
+    gap: 12px;
+  }
+
+  .hwCard .hwTab {
+    min-height: 136px;
+    padding: 14px 12px;
+  }
+
+  .hwCard .hwCardBlob {
+    width: 72px;
+    height: 70px;
+  }
+
+  .hwCard .hwStageIcon {
+    right: 9px;
+    bottom: 8px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .hwCard .hwTab:has(.hwNow) .hwTabTitle {
+    padding-right: 0;
+    padding-top: 18px;
+  }
+
+  .hwCard .hwNow {
+    top: 7px;
+    right: 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hwCard .hwNavigation {
+    padding: 20px 16px 16px;
+  }
+
+  .hwCard .hwTabs {
+    gap: 12px;
+  }
+
+  .hwCard .hwTab {
+    min-height: 120px;
+    padding: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hwCard .hwTab {
+    min-height: 136px;
+    padding: 12px;
+  }
+
+  .hwCard .hwCardBlob {
+    width: 66px;
+    height: 64px;
+  }
+
+  .hwCard .hwStageIcon {
+    right: 8px;
+    bottom: 7px;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .hwCard .hwTabTitle {
+    font-size: 12px;
+  }
+
+  .hwCard .hwTabNumber {
+    font-size: 28px;
+  }
+
+  .hwCard .hwTab:has(.hwNow) .hwTabTitle {
+    padding-right: 0;
+    padding-top: 18px;
+  }
+
+  .hwCard .hwNow {
+    top: 6px;
+    right: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hwCard .hwTab,
+  .hwCard .hwCardBlob,
+  .hwCard .hwStageIcon {
+    transition: none;
+  }
+
+  .hwCard .hwTab:hover {
+    transform: none;
+  }
+}
+
+/* ===== KIVO: STAGE LOCATION MOTION ===== */
+
+/* Transiciones suaves entre las etapas */
+
+.hwCard .hwTab {
+  transition:
+    background .28s ease,
+    color .28s ease,
+    border-color .28s ease,
+    box-shadow .28s ease,
+    transform .28s ease;
+}
+
+/* Tarjeta iluminada durante el recorrido */
+
+.hwCard .hwTabTravel,
+.hwCard .hwTabTravel:hover {
+  background: #111111;
+  border-color: #111111;
+  color: #fff;
+  box-shadow: 0 0 0 2px #00aeff;
+  transform: translateY(-2px);
+
+  .hwTabTitle,
+  .hwTabNumber,
+  .hwStageIcon {
+    color: #fff;
+  }
+
+  .hwCardBlob {
+    background: #00aeff;
+  }
+
+  > small {
+    color: #d5dbe3;
+  }
+
+  > .hwText_hecho {
+    color: #a6e8b9;
+  }
+
+  > .hwText_actual {
+    color: #aae4ff;
+  }
+
+  > .hwText_rechazado {
+    color: #ffb4b4;
+  }
+
+  .hwNow {
+    background: #00aeff;
+    color: #111111;
+  }
+}
+
+/* Llegada a la ubicación real del expediente */
+
+.hwCard .hwTabArrived {
+  animation: hwLocationArrival .65s ease-out both;
+}
+
+@keyframes hwLocationArrival {
+  0% {
+    box-shadow: 0 0 0 2px #00aeff;
+    transform: translateY(-2px);
+  }
+
+  45% {
+    box-shadow:
+      0 0 0 2px #00aeff,
+      0 0 0 6px #d4f1ff;
+    transform: translateY(-3px);
+  }
+
+  100% {
+    box-shadow: 0 0 0 2px #00aeff;
+    transform: translateY(0);
+  }
+}
+
+/* Reforzar el indicador Ahora durante la llegada */
+
+.hwCard .hwTabArrived .hwNow {
+  animation: hwNowArrival .65s ease-out;
+}
+
+@keyframes hwNowArrival {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.08);
+    background: #00aeff;
+    color: #111111;
+  }
+}
+
+/* Accesibilidad: movimiento reducido */
+
+@media (prefers-reduced-motion: reduce) {
+  .hwCard .hwTab,
+  .hwCard .hwTabTravel,
+  .hwCard .hwTabArrived,
+  .hwCard .hwTabArrived .hwNow {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ===== KIVO: SUBSTEP CARDS V4 ===== */
+
+/* Encabezado compacto */
+
+.hwCard .hwStageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 18px;
+  margin: 4px 0 18px;
+  border-top: 1px solid #e3e8ef;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0b1220;
+  }
+}
+
+.hwStageTools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hwCard .hwStageProgress {
+  gap: 10px;
+}
+
+/* Eliminar contenedor gris */
+
+.hwCard .hwWorkflowPanel {
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+  padding: 4px 0;
+  margin-bottom: 24px;
+  overflow: visible;
+}
+
+.hwCard .hwStepper {
+  gap: 10px;
+  align-items: stretch;
+  margin: 0;
+}
+
+.hwCard .hwStepItem {
+  min-width: 0;
+}
+
+.hwCard .hwStepItem::after {
+  display: none;
+}
+
+/* Tarjetas de segundo nivel */
+
+.hwCard .hwStepButton {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+
+  padding: 13px 11px 16px;
+  gap: 11px;
+
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+  background: #fff;
+  color: #0b1220;
+  text-align: left;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+
+  &:hover {
+    background: #f5f7fa;
+    border-color: #b8c2d0;
+    transform: translateY(-2px);
+  }
+}
+
+/* Icono arriba a la izquierda y número a la derecha */
+
+.hwCard .hwSubTop {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.hwCard .hwSubNumber {
+  color: #5b6577;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Iconografía compacta */
+
+.hwCard .hwStepItem .hwDot {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+  border-radius: 9px;
+
+  background: #f5f7fa;
+  border: 1px solid #e3e8ef;
+  color: #5b6577;
+
+  outline: none;
+  flex-shrink: 0;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Estado real: completado */
+
+.hwCard .hwStep_hecho .hwDot {
+  background: #e5f4eb;
+  border-color: #e5f4eb;
+  color: #1e7a43;
+}
+
+/* Estado real: actual */
+
+.hwCard .hwStep_actual .hwDot {
+  background: #0077b6;
+  border-color: #0077b6;
+  color: #fff;
+}
+
+/* Estado real: rechazado */
+
+.hwCard .hwStep_rechazado .hwDot {
+  background: #fdecea;
+  border-color: #edb6b6;
+  color: #b3261e;
+}
+
+.hwCard .hwDoneMark svg,
+.hwCard .hwRejectMark svg {
+  width: 9px;
+  height: 9px;
+}
+
+/* Título de los subpasos */
+
+.hwCard .hwStepTitle {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 42px;
+
+  color: #0b1220;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
+
+  overflow-wrap: anywhere;
+}
+
+/* Estados inferiores */
+
+.hwCard .hwStepButton > small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.hwCard .hwSubStatusDot {
+  display: inline-block;
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Línea inferior de estado */
+
+.hwCard .hwSubLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #e3e8ef;
+  pointer-events: none;
+}
+
+.hwCard .hwStep_hecho .hwSubLine {
+  background: #1fa855;
+}
+
+.hwCard .hwStep_rechazado .hwSubLine {
+  background: #b3261e;
+}
+
+/* Selección de consulta: celeste suave */
+
+.hwCard .hwStepSelected,
+.hwCard .hwStepSelected:hover {
+  background: #e6f6ff;
+  border-color: #00aeff;
+  box-shadow: 0 0 0 1px #00aeff;
+  transform: none;
+}
+
+.hwCard .hwStepSelected .hwStepTitle {
+  font-weight: 600;
+  color: #0b1220;
+}
+
+.hwCard .hwStepSelected .hwSubLine {
+  background: #00aeff;
+}
+
+.hwCard .hwStepSelected .hwSubNumber {
+  color: #005a8c;
+}
+
+/* Recorrido visual de ubicuidad */
+
+.hwCard .hwSubTravel,
+.hwCard .hwSubTravel:hover {
+  background: #e6f6ff;
+  border-color: #00aeff;
+  box-shadow: 0 0 0 1px #00aeff;
+  transform: translateY(-2px);
+
+  .hwSubLine {
+    background: #00aeff;
+  }
+}
+
+.hwCard .hwSubArrived {
+  animation: hwSubLocationArrival .5s ease-out;
+}
+
+@keyframes hwSubLocationArrival {
+  0% {
+    box-shadow: 0 0 0 1px #00aeff;
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 1px #00aeff,
+      0 0 0 5px #d4f1ff;
+  }
+
+  100% {
+    box-shadow: 0 0 0 1px #00aeff;
+  }
+}
+
+/* Accesibilidad */
+
+.hwCard .hwStepButton:focus-visible {
+  outline: 2px solid #0077b6;
+  outline-offset: 3px;
+}
+
+/* Responsive */
+
+@media (max-width: 1400px) {
+  .hwCard .hwStepper {
+    gap: 8px;
+  }
+
+  .hwCard .hwStepButton {
+    padding: 12px 9px 15px;
+    min-height: 156px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hwCard .hwStepper {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .hwCard .hwStepper {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px;
+  }
+
+  .hwCard .hwStepButton {
+    min-height: 136px;
+    padding: 12px;
+  }
+
+  .hwStageTools {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .hwCard .hwStepper {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px;
+  }
+
+  .hwStageTools {
+    width: 100%;
+  }
+
+  .hwCard .hwStageProgress {
+    flex-wrap: wrap;
+  }
+
+  .hwCard .hwStepButton {
+    min-height: 142px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hwCard .hwStepButton,
+  .hwCard .hwSubTravel,
+  .hwCard .hwSubArrived {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ===== KIVO: ACTIVITY DOCUMENTS V5 ===== */
+
+.hwCard .hwDetail {
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e3e8ef;
+  border-radius: 16px;
+}
+
+/* RESUMEN HORIZONTAL */
+
+.adOverview {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 24px;
+  border-bottom: 1px solid #e3e8ef;
+  background: #fff;
+}
+
+.adFact {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+
+  &:nth-child(2) {
+    padding-left: 24px;
+    border-left: 1px solid #e3e8ef;
+  }
+
+  small {
+    display: block;
+    font-size: 12px;
+    color: #5b6577;
+    margin-bottom: 5px;
+  }
+
+  strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #111111;
+  }
+}
+
+.adFactIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  background: #00aeff;
+  color: #111111;
+}
+
+.adFactDark {
+  background: #111111;
+  color: #ffffff;
+}
+
+.adStatus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: currentColor;
+    border-radius: 50%;
+  }
+}
+
+.adStatus_actual {
+  background: #00aeff;
+  color: #111111;
+}
+
+.adStatus_hecho {
+  background: #008c45;
+  color: #ffffff;
+}
+
+.adStatus_pendiente {
+  background: #111111;
+  color: #ffffff;
+}
+
+.adStatus_rechazado {
+  background: #b3261e;
+  color: #ffffff;
+}
+
+/* HISTORIAL DE ACTIVIDADES */
+
+.adActivity {
+  padding: 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e3e8ef;
+}
+
+.adSectionHeader,
+.adDocumentsHeader,
+.adListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  h4, h5 {
+    margin: 0;
+    color: #111111;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  > span {
+    font-size: 12px;
+    color: #5b6577;
+  }
+}
+
+.adSectionHeader {
+  margin-bottom: 22px;
+}
+
+.hwCard .adTimeline {
+
+  .auditTimeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .auditTimeline > li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  .auditDay {
+    margin: 18px 0 12px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111111;
+  }
+
+  .auditEvent {
+    position: relative;
+    display: grid;
+    grid-template-columns: 60px minmax(0, 1fr);
+    align-items: start;
+    gap: 18px;
+    margin: 0 0 12px;
+    padding: 16px 0;
+    background: #ffffff;
+    border: 0;
+    border-bottom: 1px solid #e3e8ef;
+    border-radius: 0;
+  }
+
+  .auditTime {
+    padding-top: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111111;
+  }
+
+  .auditEventBody {
+    position: relative;
+    padding: 0 0 12px 40px;
+    border-left: 2px solid #00aeff;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 11px;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: #00aeff;
+      border: 4px solid #ffffff;
+      box-shadow: 0 0 0 1px #00aeff;
+    }
+  }
+
+  .auditSentence {
+    margin: 0;
+    color: #111111;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .auditEventMeta {
+    margin-top: 7px;
+    color: #5b6577;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .auditEventLabel {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 7px;
+  }
+
+  .auditReason {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #8a4b00;
+  }
+
+  .auditObserved {
+    .auditEventBody {
+      border-left-color: #ff9900;
+
+      &::before {
+        background: #ff9900;
+        box-shadow: 0 0 0 1px #ff9900;
+      }
+    }
+  }
+
+  .auditResolved {
+    .auditEventBody {
+      border-left-color: #008c45;
+
+      &::before {
+        background: #008c45;
+        box-shadow: 0 0 0 1px #008c45;
+      }
+    }
+  }
+
+  .auditRejected {
+    .auditEventBody {
+      border-left-color: #b3261e;
+
+      &::before {
+        background: #b3261e;
+        box-shadow: 0 0 0 1px #b3261e;
+      }
+    }
+  }
+
+  .auditSystem {
+    .auditEventBody {
+      border-left-color: #a0a8b5;
+
+      &::before {
+        background: #a0a8b5;
+        box-shadow: none;
+      }
+    }
+
+    .auditSentence {
+      color: #5b6577;
+      font-size: 13px;
+    }
+  }
+}
+
+.adEmpty {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  color: #5b6577;
+  font-size: 13px;
+
+  svg {
+    color: #0077b6;
+  }
+}
+
+/* DOCUMENTACIÓN */
+
+.adDocuments {
+  padding: 24px;
+  background: #ffffff;
+}
+
+.adDocumentsHeader {
+  margin-bottom: 20px;
+
+  p {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: #5b6577;
+  }
+}
+
+.adPercentage {
+  text-align: right;
+
+  strong {
+    display: block;
+    color: #008c45;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  small {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #5b6577;
+  }
+}
+
+/* PROGRESO SEGMENTADO */
+
+.adSegments {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+
+  > span {
+    flex: 1;
+    min-width: 0;
+    height: 8px;
+    border-radius: 3px;
+  }
+}
+
+.adSegment_aceptado {
+  background: #008c45;
+}
+
+.adSegment_recibido {
+  background: #00aeff;
+}
+
+.adSegment_observado {
+  background: #ff9900;
+}
+
+.adSegment_pendiente {
+  background: #a0a8b5;
+}
+
+.adLegend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: 14px 0 28px;
+
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #111111;
+    font-weight: 500;
+  }
+
+  i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+}
+
+/* QUÉ FALTA PARA CONTINUAR */
+
+.adAttention {
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 28px;
+
+  > header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px 16px;
+    background: #111111;
+    color: #ffffff;
+
+    h5 {
+      flex: 1;
+      min-width: 0;
+      margin: 0;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  > ul {
+    padding: 0 16px;
+    margin: 0;
+    list-style: none;
+  }
+}
+
+.adAttentionMark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  border: 2px solid #ff9900;
+  border-radius: 50%;
+  color: #ff9900;
+  font-weight: 700;
+  font-size: 14px;
+  flex: none;
+}
+
+.adAttentionCount {
+  background: #ff9900;
+  color: #111111;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.adAttentionIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  flex: none;
+}
+
+.adAttentionOrange {
+  background: #ff9900;
+  color: #111111;
+}
+
+/* LISTA DE DOCUMENTOS */
+
+.adListHeader {
+  margin-bottom: 8px;
+
+  h5 {
+    font-size: 14px;
+  }
+}
+
+.adDocumentList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.adDocumentList > li,
+.adAttention > ul > li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e3e8ef;
+  min-width: 0;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.adDocumentIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid currentColor;
+  flex: none;
+  background: #ffffff;
+}
+
+.adDocumentText {
+  flex: 1;
+  min-width: 0;
+
+  strong {
+    display: block;
+    color: #111111;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  small {
+    display: block;
+    margin-top: 4px;
+    color: #5b6577;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .adObservation {
+    color: #9a5100;
+    font-weight: 500;
+  }
+}
+
+.adDocumentStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.adColor_aceptado {
+  color: #008c45;
+}
+
+.adColor_recibido {
+  color: #0077b6;
+}
+
+.adColor_observado {
+  color: #9a5100;
+}
+
+.adColor_pendiente {
+  color: #5b6577;
+}
+
+/* CONSERVAR AVISOS EXISTENTES */
+
+.hwCard .hwDetail > .hwPending,
+.hwCard .hwDetail > .hwCurrent,
+.hwCard .hwDetail > .hwEmpty {
+  margin: 20px 24px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .adOverview {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .adStatus {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .adActivity,
+  .adDocuments {
+    padding: 18px;
+  }
+
+  .adFact:nth-child(2) {
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 580px) {
+  .adOverview {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .adFact:nth-child(2) {
+    border: 0;
+    padding: 0;
+  }
+
+  .adActivity,
+  .adDocuments {
+    padding: 16px;
+  }
+
+  .adPercentage {
+    text-align: left;
+  }
+
+  .adAttention > header h5 {
+    flex-basis: calc(100% - 35px);
+  }
+
+  .adDocumentList > li,
+  .adAttention > ul > li {
+    flex-wrap: wrap;
+  }
+
+  .adDocumentText {
+    flex-basis: calc(100% - 60px);
+  }
+
+  .adDocumentStatus {
+    margin-left: 54px;
+  }
+
+  .hwCard .adTimeline {
+    .auditEvent {
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .auditEventBody {
+      padding-left: 32px;
+
+      &::before {
+        left: 6px;
+      }
+    }
+  }
+}
+
+/* ===== KIVO: BOX ASESOR OCULTO ===== */
+
+.hwCard .adOverview,
+.hwCard .adActivity {
+  display: none !important;
+}
+
+/* ===== KIVO: DOCUMENT MANAGER V6 ===== */
+
+.dmPanel {
+  background: #fff;
+  color: #111111;
+  min-width: 0;
+}
+
+.dmHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 20px 24px 16px;
+}
+
+.dmHeading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+
+  h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111111;
+  }
+
+  p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #5b6577;
+  }
+}
+
+.dmHeadingIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d5dbe3;
+  border-radius: 12px;
+  background: #fff;
+  color: #111111;
+  flex: none;
+}
+
+.dmProgress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.dmProgressText {
+  fill: #111111;
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.dmProgressRing {
+  transition: stroke-dasharray .35s ease;
+}
+
+/* FILTROS */
+
+.dmFilters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  padding: 0 24px 20px;
+}
+
+.dmFilter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid #d5dbe3;
+  border-radius: 9px;
+  background: #fff;
+  color: #111111;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition:
+    background .15s ease,
+    color .15s ease,
+    border-color .15s ease;
+
+  &:hover {
+    border-color: #00aeff;
+    background: #f5f7fa;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 3px;
+  }
+}
+
+.dmFilterCount {
+  min-width: 22px;
+  box-sizing: border-box;
+  padding: 3px 6px;
+  border-radius: 5px;
+  background: #f1f3f5;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.dmFilterSelected,
+.dmFilterSelected:hover {
+  background: #111111;
+  color: #ffffff;
+  border-color: #00aeff;
+  box-shadow: 0 0 0 1px #00aeff;
+
+  .dmFilterCount {
+    background: #00aeff;
+    color: #111111;
+  }
+}
+
+/* TABLA */
+
+.dmTableWrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.hwCard .dmTable {
+  width: 100%;
+  min-width: 580px;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+
+  thead {
+    background: #f5f7fa;
+    border-top: 1px solid #e3e8ef;
+    border-bottom: 1px solid #e3e8ef;
+  }
+
+  th {
+    padding: 12px 16px;
+    color: #111111;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 24px;
+    width: 55%;
+  }
+
+  th:nth-child(2) {
+    width: 25%;
+  }
+
+  th:last-child,
+  td:last-child {
+    padding-right: 24px;
+    width: 20%;
+  }
+
+  td {
+    padding: 13px 16px;
+    border-bottom: 1px solid #e3e8ef;
+    vertical-align: middle;
+  }
+
+  tbody tr {
+    background: #ffffff;
+    transition: background .15s ease;
+
+    &:hover {
+      background: #f8fafc;
+    }
+  }
+}
+
+.dmDocument {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dmDocumentIcon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 9px;
+  border: 1px solid #d5dbe3;
+  background: #ffffff;
+  color: #3f4a5c;
+}
+
+.dmDocumentName {
+  min-width: 0;
+
+  strong {
+    display: block;
+    color: #111111;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  small {
+    display: block;
+    margin-top: 4px;
+    color: #5b6577;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .dmObservation {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #9a5100;
+
+    > span {
+      display: grid;
+      place-items: center;
+      width: 13px;
+      height: 13px;
+      flex: none;
+      box-sizing: border-box;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+    }
+  }
+}
+
+.dmPresented {
+  font-size: 13px;
+  color: #3f4a5c;
+}
+
+/* COLORES SEMÁNTICOS */
+
+.dmStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dmStatusIcon {
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  box-sizing: border-box;
+  flex: none;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.dmStatus_aceptado {
+  color: #008c45;
+}
+
+.dmStatus_observado {
+  color: #9a5100;
+}
+
+.dmStatus_recibido {
+  color: #0077b6;
+
+  .dmStatusIcon {
+    border: 0;
+  }
+}
+
+.dmStatus_pendiente {
+  color: #5b6577;
+
+  .dmStatusIcon {
+    border: 0;
+  }
+}
+
+.hwCard .dmTable .dmEmpty {
+  padding: 36px 20px;
+  text-align: center;
+  color: #5b6577;
+  font-size: 13px;
+}
+
+/* RESUMEN INFERIOR */
+
+.dmFooter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+  min-width: 0;
+}
+
+.dmFooterIcon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border: 1px solid #5b6577;
+  border-radius: 50%;
+  color: #5b6577;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dmFooterText {
+  flex: 1;
+  min-width: 0;
+
+  strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #111111;
+  }
+
+  small {
+    display: block;
+    margin-top: 4px;
+    color: #5b6577;
+    font-size: 12px;
+  }
+}
+
+.dmAttentionLink {
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #0077b6;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #00aeff;
+  }
+
+  &[aria-pressed='true'] {
+    border-color: #00aeff;
+    background: #111111;
+    color: #ffffff;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 3px;
+  }
+}
+
+.dmResultCount {
+  font-size: 12px;
+  color: #5b6577;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .dmHeader {
+    padding: 16px;
+  }
+
+  .dmFilters {
+    padding: 0 16px 16px;
+  }
+
+  .dmFooter {
+    padding: 16px;
+    flex-wrap: wrap;
+  }
+
+  .dmAttentionLink {
+    margin-left: auto;
+  }
+
+  .hwCard .dmTable {
+    th:first-child,
+    td:first-child {
+      padding-left: 16px;
+    }
+
+    th:last-child,
+    td:last-child {
+      padding-right: 16px;
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .dmHeadingIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dmHeading h4 {
+    font-size: 14px;
+  }
+
+  .dmFilters {
+    gap: 7px;
+  }
+
+  .dmFilter {
+    padding: 8px 10px;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .dmProgress svg {
+    width: 54px;
+    height: 54px;
+  }
+
+  .dmAttentionLink {
+    width: 100%;
+    text-align: right;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dmFilter,
+  .dmProgressRing,
+  .hwCard .dmTable tbody tr {
+    transition: none;
+  }
+}
+
+/* ===== KIVO: OBSERVED DEMO POPUP ===== */
+
+.dmObservationButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #c62828;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  cursor: pointer;
+  text-align: left;
+
+  > span {
+    display: grid;
+    place-items: center;
+    width: 13px;
+    height: 13px;
+    flex: none;
+    box-sizing: border-box;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+.dmStatus_observado {
+  color: #c62828;
+}
+
+.dmStatusButton {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+.dmDocumentName .dmObservation {
+  color: #c62828;
+}
+
+/* Popup demo */
+
+.dmModalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(11, 18, 32, 0.54);
+}
+
+.dmModal {
+  width: min(760px, 100%);
+  max-height: min(88vh, 820px);
+  overflow: auto;
+  background: #ffffff;
+  border: 1px solid #e3e8ef;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(11, 18, 32, 0.22);
+}
+
+.dmModalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid #e3e8ef;
+
+  small {
+    display: block;
+    margin-bottom: 6px;
+    color: #5b6577;
+    font-size: 12px;
+  }
+
+  h5 {
+    margin: 0;
+    color: #111111;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+}
+
+.dmModalClose {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d5dbe3;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111111;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    background: #f5f7fa;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 3px;
+  }
+}
+
+.dmModalMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: 14px 22px 0;
+  color: #5b6577;
+  font-size: 12px;
+}
+
+.dmModalTagRed {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fdecec;
+  color: #c62828;
+  font-weight: 600;
+}
+
+.dmModalBody {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 20px;
+  padding: 20px 22px;
+}
+
+.dmModalPreview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dmPreviewBadge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #c62828;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dmPreviewPaper {
+  position: relative;
+  min-height: 320px;
+  padding: 18px;
+  border: 1px solid #e3e8ef;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+  overflow: hidden;
+}
+
+.dmPreviewHeaderLine,
+.dmPreviewHeaderLineShort {
+  height: 10px;
+  border-radius: 999px;
+  background: #dce2ea;
+}
+
+.dmPreviewHeaderLine {
+  width: 78%;
+}
+
+.dmPreviewHeaderLineShort {
+  width: 42%;
+  margin-top: 10px;
+}
+
+.dmPreviewLines {
+  display: grid;
+  gap: 10px;
+  margin-top: 24px;
+
+  i {
+    display: block;
+    height: 9px;
+    border-radius: 999px;
+    background: #e7ebf1;
+  }
+
+  i:nth-child(1) { width: 100%; }
+  i:nth-child(2) { width: 92%; }
+  i:nth-child(3) { width: 96%; }
+  i:nth-child(4) { width: 88%; }
+  i:nth-child(5) { width: 94%; }
+  i:nth-child(6) { width: 76%; }
+}
+
+.dmPreviewBlur {
+  position: absolute;
+  inset: 84px 18px 18px;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(198, 40, 40, 0.08) 0 14px,
+      rgba(255, 255, 255, 0.2) 14px 28px
+    );
+  backdrop-filter: blur(3px);
+  border: 1px dashed rgba(198, 40, 40, 0.35);
+  border-radius: 10px;
+}
+
+.dmModalText {
+  h6 {
+    margin: 0 0 10px;
+    color: #111111;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0 0 14px;
+    color: #3f4a5c;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+}
+
+.dmModalReason {
+  padding: 12px 14px;
+  border-left: 3px solid #c62828;
+  background: #fff7f7;
+  color: #7f1d1d;
+  border-radius: 0 10px 10px 0;
+}
+
+.dmModalFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 22px 22px;
+}
+
+.dmModalPrimary {
+  min-width: 110px;
+  padding: 10px 14px;
+  border: 1px solid #111111;
+  border-radius: 10px;
+  background: #111111;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: #1f2937;
+    border-color: #1f2937;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0077b6;
+    outline-offset: 3px;
+  }
+}
+
+@media (max-width: 760px) {
+  .dmModalBody {
+    grid-template-columns: 1fr;
+  }
+
+  .dmPreviewPaper {
+    min-height: 240px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dmModal,
+  .dmModalClose,
+  .dmModalPrimary,
+  .dmObservationButton,
+  .dmStatusButton {
+    transition: none;
+  }
+}
+
+/* ===== KIVO: OBSERVED ROW V7 ===== */
+
+.hwCard .dmTable tbody .dmObservedRow {
+  background: #fff0f0;
+  cursor: pointer;
+
+  &:hover {
+    background: #ffe4e4;
+  }
+
+  > td {
+    border-bottom-color: #f5c2c2;
+  }
+
+  > td:first-child {
+    box-shadow: inset 4px 0 0 #dc2626;
+  }
+
+  .dmDocumentIcon {
+    background: #ffffff;
+    border-color: #dc2626;
+    color: #dc2626;
+  }
+
+  .dmObservationButton,
+  .dmStatus_observado {
+    color: #c62828;
+  }
+}
+
+/* POPUP MINIMALISTA */
+
+.dmSimpleModal {
+  box-sizing: border-box;
+  width: min(410px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e3e8ef;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
+
+  h5 {
+    margin: 18px 0 6px;
+    color: #111111;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+}
+
+.dmSimpleModalTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.dmSimpleModalIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.dmSimpleClose {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #5b6577;
+  cursor: pointer;
+
+  &:hover {
+    background: #f5f7fa;
+    color: #111111;
+  }
+}
+
+.dmSimpleDocName {
+  display: block;
+  color: #5b6577;
+  font-size: 13px;
+}
+
+.dmSimpleDescription {
+  margin: 20px 0;
+
+  p {
+    margin: 0 0 12px;
+    color: #3f4a5c;
+    font-size: 14px;
+    line-height: 1.7;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.dmSimpleDemo {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 11px;
+  color: #5b6577;
+}
+
+.dmSimplePrimary {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 16px;
+  border: 1px solid #111111;
+  border-radius: 10px;
+  background: #111111;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #00aeff;
+    box-shadow: 0 0 0 1px #00aeff;
+  }
+}
+
+.dmSimpleClose:focus-visible,
+.dmSimplePrimary:focus-visible {
+  outline: 2px solid #0077b6;
+  outline-offset: 3px;
+}
+
+/* ===== KIVO: OBSERVED CLEAN ROW ===== */
+
+.hwCard .dmTable tbody .dmObservedRow {
+  background: #ffe4e4;
+  color: #b91c1c;
+
+  &:hover {
+    background: #ffd5d5;
+  }
+
+  > td {
+    color: #b91c1c;
+    border-bottom-color: #e3e8ef;
+  }
+
+  > td:first-child {
+    box-shadow: none;
+  }
+
+  .dmDocumentIcon,
+  .dmStatusIcon,
+  .dmObservationButton > span {
+    display: none;
+  }
+
+  .dmDocumentName strong,
+  .dmPresented,
+  .dmObservationButton,
+  .dmStatus_observado {
+    color: #b91c1c;
+  }
+}
+
+/* ===== KIVO: DEMO DOCUMENT IMAGE ===== */
+
+.dmSimpleModal {
+  width: min(520px, 100%);
+}
+
+.dmDemoImage {
+  margin-top: 18px;
+  padding: 12px;
+  background: #f5f7fa;
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 340px;
+    object-fit: contain;
+    border-radius: 6px;
+  }
+
+  small {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    color: #5b6577;
+    font-size: 11px;
+  }
+}
+
+.dmSimpleDescription {
+  margin: 16px 0;
+}
+
+/* ===== KIVO: OBSERVED ROW PULSE ===== */
+
+.hwCard .dmTable tbody tr.dmObservedRow {
+  background-color: #ffe4e4 !important;
+}
+
+.hwCard .dmTable tbody tr.dmObservedRow > td {
+  background-color: #ffe4e4;
+  animation: dmObservedPulse 1.5s ease-in-out 3;
+}
+
+@keyframes dmObservedPulse {
+  0%, 100% {
+    background-color: #ffe4e4;
+  }
+
+  50% {
+    background-color: #fca5a5;
+  }
+}
+
+.hwCard .dmTable tbody tr.dmObservedRow:hover > td {
+  background-color: #ffd5d5;
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hwCard .dmTable tbody tr.dmObservedRow > td {
+    animation: none;
+  }
+}
+
+/* ===== KIVO: DOCUMENT FOOTER HIDDEN ===== */
+
+.hwCard .dmPanel .dmFooter {
+  display: none !important;
+}
+
+/* ===== KIVO: MINIMAL WORKFLOW V8 ===== */
+
+/* Distribución */
+
+.hwCard .hwStepper {
+  gap: 10px;
+  align-items: stretch;
+}
+
+.hwCard .hwStepItem {
+  min-width: 0;
+}
+
+/* Tarjeta minimalista */
+
+.hwCard .hwStepItem .hwStepButton {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 100%;
+  min-height: 144px;
+  padding: 15px 12px;
+  gap: 12px;
+
+  background: #f3f4f6;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  box-shadow: none;
+  color: #111111;
+  text-align: left;
+
+  transition:
+    background .22s ease,
+    color .22s ease,
+    transform .22s ease;
+
+  &:hover {
+    background: #e9ebef;
+    border-color: transparent;
+    box-shadow: none;
+    transform: translateY(-2px);
+  }
+}
+
+/* Icono libre y numeración discreta */
+
+.hwCard .hwSubTop {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.hwCard .hwStepItem .hwDot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 26px;
+  height: 28px;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: #596579;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.7;
+  }
+}
+
+.hwCard .hwSubNumber {
+  color: #5b6577;
+  font-size: 11px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Eliminar elementos decorativos repetidos */
+
+.hwCard .hwSubLine,
+.hwCard .hwDoneMark,
+.hwCard .hwRejectMark {
+  display: none;
+}
+
+/* Jerarquía tipográfica */
+
+.hwCard .hwStepTitle {
+  display: block;
+  flex: 1;
+  width: 100%;
+  min-height: 38px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #111111;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.hwCard .hwStepButton > small {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.hwCard .hwSubStatusDot {
+  width: 5px;
+  height: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Estados semánticos */
+
+.hwCard .hwStep_hecho .hwDot {
+  background: transparent;
+  border: 0;
+  color: #008c45;
+}
+
+.hwCard .hwStep_actual .hwDot {
+  background: transparent;
+  border: 0;
+  color: #0077b6;
+}
+
+.hwCard .hwStep_rechazado .hwDot {
+  background: transparent;
+  border: 0;
+  color: #b91c1c;
+}
+
+/* Selección y ubicuidad */
+
+.hwCard .hwStepItem .hwStepButton.hwStepSelected,
+.hwCard .hwStepItem .hwStepButton.hwSubTravel {
+  background: #111111;
+  border: 1px solid transparent;
+  box-shadow: none;
+  transform: none;
+
+  .hwDot {
+    color: #00aeff;
+    background: transparent;
+  }
+
+  .hwStepTitle {
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .hwSubNumber {
+    color: #00aeff;
+  }
+
+  > small {
+    color: #ffffff;
+  }
+}
+
+.hwCard .hwStep_actual .hwStepButton.hwStepSelected,
+.hwCard .hwStep_actual .hwStepButton.hwSubTravel {
+  > small {
+    color: #00aeff;
+  }
+}
+
+.hwCard .hwStep_hecho .hwStepButton.hwStepSelected {
+  > small {
+    color: #4ade80;
+  }
+}
+
+.hwCard .hwStep_rechazado .hwStepButton.hwStepSelected {
+  > small {
+    color: #fca5a5;
+  }
+}
+
+/* Animación de llegada */
+
+.hwCard .hwStepButton.hwSubArrived {
+  animation: hwMinimalArrival .6s ease-out;
+}
+
+@keyframes hwMinimalArrival {
+  0%, 100% {
+    box-shadow: none;
+  }
+
+  50% {
+    box-shadow: 0 0 0 3px #00aeff;
+  }
+}
+
+/* Accesibilidad */
+
+.hwCard .hwStepItem .hwStepButton:focus-visible {
+  outline: 2px solid #0077b6;
+  outline-offset: 3px;
+}
+
+/* Responsive */
+
+@media (max-width: 1400px) {
+  .hwCard .hwStepItem .hwStepButton {
+    padding: 13px 11px;
+    min-height: 146px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hwCard .hwStepItem .hwStepButton {
+    min-height: 130px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hwCard .hwStepItem .hwStepButton {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ===== KIVO: LINEAR WORKFLOW V9 ===== */
+
+/* Superficie principal */
+
+.hwCard {
+  --workflow-ink: #121519;
+  --workflow-muted: #6b7380;
+  --workflow-line: #e6e9ee;
+  --workflow-sky: #00aeff;
+  --workflow-sky-ink: #0077b6;
+  --workflow-green: #1e8a4c;
+}
+
+/* ===== NIVEL 1: STEPPER DE ETAPAS ===== */
+
+.hwCard .hwNavigation {
+  padding: 20px 24px 0;
+  background: #ffffff;
+}
+
+.hwCard .hwTabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+.hwCard .hwTabs > li {
+  position: relative;
+  min-width: 0;
+}
+
+/* Conexiones */
+
+.hwCard .hwTabs > li:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: calc(50% + 24px);
+  right: calc(-50% + 24px);
+  height: 3px;
+  background: #dadde4;
+  pointer-events: none;
+}
+
+.hwCard .hwTabs > li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: calc(50% + 24px);
+  right: calc(-50% + 24px);
+  height: 3px;
+  background: #00aeff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .38s ease-out;
+  pointer-events: none;
+}
+
+.hwCard .hwTabs > li:has(.hwCardBlob_hecho):not(:last-child)::after {
+  transform: scaleX(1);
+}
+
+/* Boton de etapa */
+
+.hwCard .hwTabs .hwTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  min-height: 122px;
+  padding: 0 8px 18px;
+  gap: 8px;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: #121519;
+  text-align: center;
+  transform: none;
+  overflow: visible;
+  isolation: auto;
+
+  &:hover {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+/* Eliminar decoracion de tarjetas anteriores */
+
+.hwCard .hwTabs .hwStageIcon,
+.hwCard .hwTabs .hwCardBlob,
+.hwCard .hwTabs .hwNow {
+  display: none;
+}
+
+/* Circulo de etapa */
+
+.hwCard .hwTabs .hwTabNumber {
+  order: 0;
+
+  display: grid;
+  place-items: center;
+  position: relative;
+
+  width: 46px;
+  height: 46px;
+  flex: none;
+
+  margin: 0;
+  padding: 0;
+
+  background: #ffffff;
+  border: 2px solid #dadde4;
+  border-radius: 50%;
+
+  color: #6b7380;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
+}
+
+/* Titulos */
+
+.hwCard .hwTabs .hwTabTitle {
+  order: 1;
+  display: block;
+  width: 100%;
+  min-height: auto;
+  max-width: none;
+
+  padding: 3px 0 0;
+  margin: 0;
+
+  color: #6b7380;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.hwCard .hwTabs .hwTab > small {
+  order: 2;
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+
+  color: #6b7380;
+  font-size: 11px;
+  font-weight: 400;
+
+  &::before {
+    display: none;
+  }
+}
+
+/* Etapas completadas */
+
+.hwCard .hwTabs .hwTab:has(.hwCardBlob_hecho) {
+  .hwTabNumber {
+    background: #121519;
+    border-color: #00aeff;
+    color: transparent;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 15px;
+      width: 8px;
+      height: 14px;
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  .hwTabTitle {
+    color: #121519;
+    font-weight: 600;
+  }
+
+  > small {
+    color: #1e8a4c;
+  }
+}
+
+/* Etapa actual */
+
+.hwCard .hwTabs .hwTab:has(.hwCardBlob_actual) {
+  .hwTabNumber {
+    background: #121519;
+    border-color: #00aeff;
+    color: #ffffff;
+  }
+
+  .hwTabTitle {
+    color: #121519;
+    font-weight: 600;
+  }
+
+  > small {
+    color: #0077b6;
+  }
+}
+
+/* Etapa rechazada */
+
+.hwCard .hwTabs .hwTab:has(.hwCardBlob_rechazado) {
+  .hwTabNumber {
+    background: #b91c1c;
+    border-color: #b91c1c;
+    color: #ffffff;
+  }
+
+  .hwTabTitle,
+  > small {
+    color: #b91c1c;
+  }
+}
+
+/* Seleccion de consulta */
+
+.hwCard .hwTabs .hwTab.hwTabSelected,
+.hwCard .hwTabs .hwTab.hwTabTravel,
+.hwCard .hwTabs .hwTab.hwTabArrived {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+
+  .hwTabNumber {
+    background: #121519;
+    border-color: #00aeff;
+    box-shadow: 0 0 0 4px #e1f5ff;
+  }
+
+  .hwTabTitle {
+    color: #121519;
+    font-weight: 600;
+  }
+}
+
+/* Indicador de panel seleccionado */
+
+.hwCard .hwTabs .hwTab.hwTabSelected::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+
+  width: 14px;
+  height: 14px;
+
+  background: #ffffff;
+  border-top: 1px solid #e6e9ee;
+  border-left: 1px solid #e6e9ee;
+
+  transform: translateX(-50%) rotate(45deg);
+  z-index: 2;
+}
+
+/* Animacion de ubicuidad de etapa */
+
+.hwCard .hwTabs .hwTab.hwTabTravel .hwTabNumber {
+  animation: hwLinearStagePulse .35s ease-out;
+}
+
+.hwCard .hwTabs .hwTab.hwTabArrived {
+  animation: none;
+
+  .hwTabNumber {
+    animation: hwLinearStageArrival .65s ease-out;
+  }
+}
+
+@keyframes hwLinearStagePulse {
+  from {
+    transform: scale(.85);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes hwLinearStageArrival {
+  0%, 100% {
+    box-shadow: 0 0 0 4px #e1f5ff;
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px #c2edff;
+  }
+}
+
+/* ===== ENCABEZADO DEL DETALLE ===== */
+
+.hwCard .hwBody {
+  background: #ffffff;
+}
+
+.hwCard .hwStageHeader {
+  border-top: 1px solid #e6e9ee;
+  margin: 0 0 12px;
+  padding-top: 22px;
+
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #121519;
+  }
+}
+
+/* ===== NIVEL 2: SUBPASOS VERTICALES ===== */
+
+.hwCard .hwWorkflowPanel {
+  margin: 0 0 18px;
+  padding: 0;
+  background: #ffffff;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.hwCard .hwStepper {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hwCard .hwStepper > li {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  border-bottom: 1px solid #f0f2f5;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &::before,
+  &::after {
+    display: none;
+  }
+}
+
+/* Fila de subpaso */
+
+.hwCard .hwStepper .hwStepItem .hwStepButton {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 120px;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  height: auto;
+  min-height: 54px;
+
+  padding: 12px 14px;
+
+  background: #ffffff;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: none;
+
+  color: #121519;
+  text-align: left;
+  transform: none;
+
+  transition: background .22s ease;
+
+  &:hover {
+    background: #f6f7f9;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+/* Indicador circular */
+
+.hwCard .hwStepper .hwSubTop {
+  display: flex;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.hwCard .hwStepper .hwSubNumber {
+  display: none;
+}
+
+.hwCard .hwStepper .hwStepItem .hwDot {
+  position: relative;
+  display: grid;
+  place-items: center;
+
+  width: 22px;
+  height: 22px;
+  padding: 0;
+
+  background: #ffffff;
+  border: 2px solid #dadde4;
+  border-radius: 50%;
+  box-shadow: none;
+  outline: none;
+
+  > svg {
+    display: none;
+  }
+}
+
+/* Completado */
+
+.hwCard .hwStepper .hwStep_hecho .hwDot {
+  background: #e5f4eb;
+  border-color: #e5f4eb;
+  color: #1e8a4c;
+
+  &::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: solid #1e8a4c;
+    border-width: 0 2px 2px 0;
+    transform: translateY(-1px) rotate(45deg);
+  }
+}
+
+/* Actual */
+
+.hwCard .hwStepper .hwStep_actual .hwDot {
+  background: #121519;
+  border-color: #121519;
+  box-shadow: 0 0 0 3px #d5f0fc;
+
+  &::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: #00aeff;
+    border-radius: 50%;
+  }
+}
+
+/* Rechazado */
+
+.hwCard .hwStepper .hwStep_rechazado .hwDot {
+  background: #b91c1c;
+  border-color: #b91c1c;
+
+  &::after {
+    content: '×';
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+  }
+}
+
+/* Ocultar decoracion anterior */
+
+.hwCard .hwStepper .hwSubLine,
+.hwCard .hwStepper .hwDoneMark,
+.hwCard .hwStepper .hwRejectMark,
+.hwCard .hwStepper .hwSubStatusDot {
+  display: none;
+}
+
+/* Nombre del subpaso */
+
+.hwCard .hwStepper .hwStepTitle {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+
+  color: #3b424c;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Estado */
+
+.hwCard .hwStepper .hwStepButton > small {
+  display: block;
+  width: auto;
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+
+  color: #6b7380;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.hwCard .hwStepper .hwStep_hecho .hwStepButton > small {
+  color: #1e8a4c;
+}
+
+.hwCard .hwStepper .hwStep_actual .hwStepButton > small {
+  color: #0077b6;
+  font-weight: 600;
+}
+
+.hwCard .hwStepper .hwStep_rechazado .hwStepButton > small {
+  color: #b91c1c;
+}
+
+/* Seleccion y recorrido */
+
+.hwCard .hwStepper .hwStepItem .hwStepButton.hwStepSelected,
+.hwCard .hwStepper .hwStepItem .hwStepButton.hwSubTravel {
+  background: #eaf7fe;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: none;
+  transform: none;
+
+  .hwStepTitle {
+    color: #121519;
+    font-weight: 600;
+  }
+}
+
+.hwCard .hwStepper .hwStepButton.hwSubArrived {
+  animation: hwLinearSubArrival .65s ease-out;
+}
+
+@keyframes hwLinearSubArrival {
+  0%, 100% {
+    background: #eaf7fe;
+  }
+
+  50% {
+    background: #cceeff;
+  }
+}
+
+/* Accesibilidad */
+
+.hwCard .hwTabs .hwTab:focus-visible,
+.hwCard .hwStepper .hwStepButton:focus-visible {
+  outline: 2px solid #0077b6;
+  outline-offset: 3px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 900px) {
+  .hwCard .hwNavigation {
+    overflow-x: auto;
+    padding: 18px 16px 10px;
+  }
+
+  .hwCard .hwTabs {
+    grid-template-columns: repeat(5, minmax(128px, 1fr));
+    min-width: 640px;
+  }
+
+  .hwCard .hwTabs .hwTab {
+    min-height: 116px;
+  }
+
+  .hwCard .hwTabs .hwTabTitle {
+    font-size: 12px;
+  }
+
+  .hwCard .hwStepper .hwStepItem .hwStepButton {
+    grid-template-columns:
+      24px minmax(0, 1fr) 100px;
+
+    padding: 12px 8px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hwCard .hwStepper .hwStepItem .hwStepButton {
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 6px 12px;
+  }
+
+  .hwCard .hwStepper .hwStepButton > small {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+
+/* Movimiento reducido */
+
+@media (prefers-reduced-motion: reduce) {
+  .hwCard .hwTabs > li::after,
+  .hwCard .hwTabs .hwTab,
+  .hwCard .hwTabs .hwTabNumber,
+  .hwCard .hwStepper .hwStepButton {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== KIVO: INTEGRATED WORKFLOW V11 ===== */
+
+/* Navegacion compacta */
+
+.hwCard .hwNavigation {
+  display: block;
+  padding: 18px 24px 8px;
+  background: #ffffff;
+  overflow: visible;
+}
+
+.hwCard .hwNavigation .hwTabs {
+  display: flex !important;
+  align-items: stretch;
+  gap: 4px;
+
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+
+  padding: 4px;
+  margin: 0;
+
+  background: #f1f3f6;
+  border: 1px solid #e6e9ee;
+  border-radius: 10px;
+
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.hwCard .hwNavigation .hwTabs > li {
+  display: flex;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+
+  &::before,
+  &::after {
+    display: none !important;
+  }
+}
+
+/* Tabs */
+
+.hwCard .hwNavigation .hwTabs .hwTab {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: auto;
+  height: auto;
+  min-height: 38px;
+
+  padding: 9px 15px;
+  margin: 0;
+
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  box-shadow: none;
+
+  color: #6b7380;
+  white-space: nowrap;
+  text-align: center;
+
+  overflow: visible;
+  transform: none;
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+
+  &:hover {
+    background: #e6e9ee;
+    border-color: transparent;
+    box-shadow: none;
+    transform: none;
+  }
+
+  &::before,
+  &::after {
+    display: none !important;
+  }
+}
+
+.hwCard .hwNavigation .hwTabs .hwTabNumber,
+.hwCard .hwNavigation .hwTabs .hwStageIcon,
+.hwCard .hwNavigation .hwTabs .hwCardBlob,
+.hwCard .hwNavigation .hwTabs .hwTab > small {
+  display: none !important;
+}
+
+.hwCard .hwNavigation .hwTabs .hwTab .hwTabTitle {
+  display: block;
+  order: 0;
+
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+
+  padding: 0;
+  margin: 0;
+
+  color: #6b7380;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* Seleccion */
+
+.hwCard .hwNavigation .hwTabs .hwTab.hwTabSelected,
+.hwCard .hwNavigation .hwTabs .hwTab.hwTabSelected:hover {
+  background: #ffffff;
+  border: 1px solid #e3e8ef;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, .10);
+
+  .hwTabTitle {
+    color: #121519;
+    font-weight: 600;
+  }
+}
+
+/* Punto celeste de etapa actual */
+
+.hwCard .hwNavigation .hwTabs .hwTab .hwNow {
+  display: block !important;
+  position: static;
+  order: 1;
+
+  width: 7px;
+  height: 7px;
+  min-width: 7px;
+  flex: none;
+
+  padding: 0;
+  margin: 0;
+
+  background: #00aeff;
+  border: 0;
+  border-radius: 50%;
+
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+
+  overflow: hidden;
+  box-shadow: none;
+  animation: none;
+}
+
+/* Ubicuidad animada */
+
+.hwCard .hwNavigation .hwTabs .hwTab.hwTabTravel {
+  background: #ffffff;
+  border-color: #00aeff;
+  box-shadow: 0 0 0 1px #00aeff;
+
+  .hwTabTitle {
+    color: #121519;
+    font-weight: 600;
+  }
+}
+
+.hwCard .hwNavigation .hwTabs .hwTab.hwTabArrived {
+  background: #ffffff;
+  border-color: #00aeff;
+  animation: hwV11Arrival .65s ease-out;
+}
+
+@keyframes hwV11Arrival {
+  0%, 100% {
+    box-shadow: 0 1px 3px rgba(16, 24, 40, .10);
+  }
+
+  50% {
+    box-shadow: 0 0 0 3px #cceeff;
+  }
+}
+
+.hwCard .hwNavigation .hwTabs
+.hwTab:has(.hwCardBlob_rechazado) .hwTabTitle {
+  color: #b91c1c;
+}
+
+/* Cabecera de etapa */
+
+.hwCard .hwStageHeader {
+  border: 0;
+  margin: 0 0 12px;
+  padding: 14px 0 4px;
+
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #121519;
+  }
+}
+
+/* Lista vertical */
+
+.hwCard .hwStepper {
+  display: flex !important;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hwCard .hwStepper .hwStepItem {
+  width: 100%;
+  min-width: 0;
+}
+
+.hwCard .hwStepper .hwStepItem .hwStepButton {
+  display: grid;
+
+  grid-template-columns:
+    24px minmax(0, 1fr) 120px 18px;
+
+  align-items: center;
+
+  min-height: 52px;
+  padding: 11px 12px;
+  gap: 12px;
+}
+
+.hwCard .hwStepper .hwStepTitle {
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.hwCard .hwStepper .hwStepItem .hwStepButton.hwStepSelected {
+  background: #eaf7fe;
+
+  .hwStepTitle {
+    color: #121519;
+    font-weight: 600;
+  }
+}
+
+/* Indicador de detalle */
+
+.hwInlineChevron {
+  color: #6b7380;
+  justify-self: center;
+  transition: transform .2s ease;
+}
+
+.hwInlineChevronOpen {
+  color: #0077b6;
+  transform: rotate(180deg);
+}
+
+/* Detalle dentro de su subpaso */
+
+.hwCard .hwInlineDetail {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: stretch;
+
+  gap: 12px;
+  padding: 8px 12px 18px;
+
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+}
+
+/* Linea contextual celeste */
+
+.hwInlineConnector {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 2px;
+    border-radius: 2px;
+    background: #00aeff;
+
+    transform: translateX(-50%);
+  }
+}
+
+.hwInlineContent {
+  min-width: 0;
+  width: 100%;
+  animation: hwV11Reveal .25s ease-out;
+}
+
+@keyframes hwV11Reveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Panel de detalle existente */
+
+.hwCard .hwInlineContent .hwDetail {
+  width: 100%;
+  min-width: 0;
+
+  padding: 0;
+  margin: 0;
+
+  background: #ffffff;
+  border: 1px solid #e6e9ee;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.hwCard .hwInlineContent .dmPanel {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Mantener elementos previamente ocultos */
+
+.hwCard .hwInlineContent .adOverview,
+.hwCard .hwInlineContent .adActivity,
+.hwCard .hwInlineContent .dmFooter {
+  display: none !important;
+}
+
+/* Accesibilidad */
+
+.hwCard .hwNavigation .hwTabs .hwTab:focus-visible {
+  outline: 2px solid #0077b6;
+  outline-offset: -2px;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .hwCard .hwNavigation .hwTabs .hwTab {
+    padding: 8px 12px;
+
+    .hwTabTitle {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .hwCard .hwNavigation {
+    padding: 16px 16px 6px;
+  }
+
+  .hwCard .hwNavigation .hwTabs {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hwCard .hwStepper .hwStepItem .hwStepButton {
+    grid-template-columns:
+      24px minmax(0, 1fr) 90px 16px;
+
+    gap: 10px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hwCard .hwNavigation {
+    padding: 12px 12px 6px;
+  }
+
+  .hwCard .hwStepper .hwStepItem .hwStepButton {
+    grid-template-columns:
+      22px minmax(0, 1fr) 16px;
+
+    gap: 6px 10px;
+    padding: 10px 8px;
+  }
+
+  .hwCard .hwStepper .hwStepButton > small {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+  }
+
+  .hwInlineChevron {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+
+  .hwCard .hwInlineDetail {
+    grid-template-columns: 10px minmax(0, 1fr);
+    gap: 6px;
+    padding: 8px 0 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hwCard .hwNavigation .hwTabs .hwTab,
+  .hwInlineContent,
+  .hwInlineChevron {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== KIVO: TABS AND INDICATORS V12 ===== */
+
+/* Tabs a todo el ancho */
+
+.hwCard .hwNavigation {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hwCard .hwNavigation .hwTabs {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+  gap: 4px;
+  padding: 4px;
+
+  background: #f1f3f6;
+  border: 1px solid #e3e8ef;
+  border-radius: 8px;
+}
+
+.hwCard .hwNavigation .hwTabs > li {
+  width: 100%;
+  min-width: 0;
+}
+
+.hwCard .hwNavigation .hwTabs .hwTab {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.hwCard .hwNavigation .hwTabs .hwTab .hwTabTitle {
+  text-align: center;
+  white-space: normal;
+}
+
+/* Seleccion celeste */
+
+.hwCard .hwNavigation .hwTabs .hwTab.hwTabSelected,
+.hwCard .hwNavigation .hwTabs .hwTab.hwTabSelected:hover {
+  background: #e4f5ff;
+  border: 1px solid #00aeff;
+  box-shadow: none;
+
+  .hwTabTitle {
+    color: #121519;
+    font-weight: 600;
+  }
+}
+
+/* Recorrido animado */
+
+.hwCard .hwNavigation .hwTabs .hwTab.hwTabTravel,
+.hwCard .hwNavigation .hwTabs .hwTab.hwTabArrived {
+  background: #e4f5ff;
+  border-color: #00aeff;
+}
+
+/* ===== INDICADORES CIRCULARES ===== */
+
+.hwCard .hwStepper .hwStepItem .hwSubTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+.hwCard .hwStepper .hwStepItem .hwDot {
+  display: grid !important;
+  place-items: center !important;
+
+  position: relative;
+
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
+
+  flex: none;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border-radius: 50%;
+  box-sizing: border-box;
+
+  transform: none;
+
+  > * {
+    display: none !important;
+  }
+
+  &::before {
+    display: none !important;
+    content: none !important;
+  }
+}
+
+/* Check verde centrado */
+
+.hwCard .hwStepper .hwStep_hecho .hwDot {
+  background: #e5f4eb !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  &::after {
+    content: '' !important;
+    display: block !important;
+
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    width: 14px !important;
+    height: 14px !important;
+
+    background-color: #008c45 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    clip-path: polygon(
+      8% 48%,
+      20% 36%,
+      40% 56%,
+      81% 15%,
+      93% 27%,
+      40% 80%
+    );
+
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+/* Subpaso actual: negro y celeste */
+
+.hwCard .hwStepper .hwStep_actual .hwDot {
+  background: #121519 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  &::after {
+    content: '' !important;
+    display: block !important;
+
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    width: 8px !important;
+    height: 8px !important;
+
+    background: #00aeff !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    clip-path: none;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+/* Pendiente */
+
+.hwCard .hwStepper .hwStep_pendiente .hwDot {
+  background: #ffffff !important;
+  border: 2px solid #dadde4 !important;
+  box-shadow: none !important;
+
+  &::after {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .hwCard .hwNavigation .hwTabs {
+    display: flex !important;
+    overflow-x: auto;
+  }
+
+  .hwCard .hwNavigation .hwTabs > li {
+    flex: 1 0 auto;
+    width: auto;
+  }
+
+  .hwCard .hwNavigation .hwTabs .hwTab {
+    padding: 9px 14px;
+  }
+
+  .hwCard .hwNavigation .hwTabs .hwTab .hwTabTitle {
+    white-space: nowrap;
+  }
+}
+
+/* ===== KIVO: MODAL PORTAL FIX V13 ===== */
+
+.dmModalBackdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 100000 !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+
+  background: rgba(18, 21, 25, .55);
+  isolation: isolate;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dmModalBackdrop .dmSimpleModal {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 100%);
+  max-height: calc(100dvh - 48px);
+
+  margin: auto;
+  padding: 24px;
+
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #e3e8ef;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
+
+  overflow-y: auto;
+}
+
+.dmModalBackdrop .dmSimpleModalTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.dmModalBackdrop .dmSimpleModalIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.dmModalBackdrop .dmSimpleClose {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border: 1px solid #e3e8ef;
+  border-radius: 10px;
+  color: #5b6577;
+  cursor: pointer;
+}
+
+.dmModalBackdrop .dmSimpleModal h5 {
+  margin: 0 0 5px;
+  font-size: 21px;
+  font-weight: 600;
+  color: #121519;
+}
+
+.dmModalBackdrop .dmSimpleDocName {
+  display: block;
+  font-size: 13px;
+  color: #5b6577;
+  margin-bottom: 16px;
+}
+
+.dmModalBackdrop .dmDemoImage {
+  padding: 12px;
+  background: #f5f7fa;
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+}
+
+.dmModalBackdrop .dmDemoImage img {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+}
+
+.dmModalBackdrop .dmDemoImage small {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+  font-size: 11px;
+  color: #5b6577;
+}
+
+.dmModalBackdrop .dmSimpleDescription {
+  margin: 18px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #3b424c;
+}
+
+.dmModalBackdrop .dmSimplePrimary {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: #111111;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dmModalBackdrop button:focus-visible {
+  outline: 2px solid #00aeff;
+  outline-offset: 3px;
+}
+
+:global(body):has(.dmModalBackdrop) {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .dmModalBackdrop {
+    padding: 12px;
+  }
+
+  .dmModalBackdrop .dmSimpleModal {
+    max-height: calc(100dvh - 24px);
+    padding: 20px;
+  }
+}
+
+/* ===== KIVO: BLACK WORKFLOW FOOTER ===== */
+
+.hwCard .hwFooter {
+  background: #111111;
+  color: #ffffff;
+  border-top: 1px solid #292929;
+  border-radius: 0 0 17px 17px;
+
+  span {
+    color: #ffffff;
+  }
+
+  button {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid transparent;
+
+    transition:
+      background .18s ease,
+      color .18s ease;
+    box-shadow: none;
+
+    svg {
+      color: currentColor;
+    }
+
+    &:hover:not(:disabled) {
+      background: #ffffff;
+      border-color: transparent;
+      color: #111111;
+
+      span,
+      svg {
+        color: #111111;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid #00aeff;
+      outline-offset: 3px;
+    }
+
+    &:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -2,9 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import {
   Calculator,
+  LogOut,
+  X,
   ChartNoAxesColumn,
   ClipboardList,
   Home,
@@ -66,6 +70,110 @@ function isActive(pathname: string | null, href: string) {
     }
   }
   return false;
+}
+
+
+function LogoutAction() {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  function closeDialog() {
+    dialogRef.current?.close();
+    triggerRef.current?.focus();
+  }
+
+  function confirmLogout() {
+    dialogRef.current?.close();
+    window.location.replace("/login");
+  }
+
+  return (
+    <>
+      <button
+        ref={triggerRef}
+        type="button"
+        className={`${styles.item} ${styles.logout}`}
+        aria-label="Cerrar sesión"
+        aria-haspopup="dialog"
+        data-tooltip="Cerrar sesión"
+        onClick={() => dialogRef.current?.showModal()}
+      >
+        <LogOut
+          size={18}
+          className={styles.icon}
+          aria-hidden="true"
+        />
+        <span className={styles.label}>Cerrar sesión</span>
+      </button>
+
+      {mounted && createPortal(
+        <dialog
+          ref={dialogRef}
+          className={styles.logoutDialog}
+          aria-labelledby="logout-title"
+          aria-describedby="logout-description"
+          onCancel={(event) => {
+            event.preventDefault();
+            closeDialog();
+          }}
+          onClick={(event) => {
+            if (event.target === event.currentTarget) {
+              closeDialog();
+            }
+          }}
+        >
+          <div className={styles.logoutDialogBody}>
+            <div className={styles.logoutDialogTop}>
+              <span className={styles.logoutDialogIcon}>
+                <LogOut size={26} aria-hidden="true" />
+              </span>
+
+              <button
+                type="button"
+                className={styles.logoutDialogClose}
+                aria-label="Cerrar ventana"
+                onClick={closeDialog}
+              >
+                <X size={20} aria-hidden="true" />
+              </button>
+            </div>
+
+            <h2 id="logout-title">¿Cerrar sesión?</h2>
+
+            <p id="logout-description">
+              Estás a punto de salir del backoffice de Kivo.
+              ¿Deseas continuar?
+            </p>
+
+            <div className={styles.logoutDialogActions}>
+              <button
+                type="button"
+                autoFocus
+                className={styles.logoutCancel}
+                onClick={closeDialog}
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="button"
+                className={styles.logoutConfirm}
+                onClick={confirmLogout}
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          </div>
+        </dialog>,
+        document.body
+      )}
+    </>
+  );
 }
 
 export function SidebarView({
@@ -140,6 +248,8 @@ export function SidebarView({
           <Plus size={18} className={styles.icon} aria-hidden="true" />
           <span className={styles.label}>Nueva solicitud</span>
         </Link>
+
+        <LogoutAction />
       </div>
     </aside>
   );
