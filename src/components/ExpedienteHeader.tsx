@@ -17,6 +17,7 @@ import s from "./ExpedienteHeader.module.scss";
 export type EstadoChip = { label: string; bg: string; color: string };
 
 type Props = {
+  asesorNombre?: string | null;
   nombre: string;
   codigo: string;
   estado: EstadoChip;
@@ -42,7 +43,7 @@ const iniciales = (nombre: string) =>
     .toUpperCase();
 
 export default function ExpedienteHeader({
-  nombre, codigo, estado, ci, telefono, email, ciudad, recibida, canal, volver, accion,
+  nombre, codigo, estado, ci, telefono, email, ciudad, recibida, canal, volver, accion, asesorNombre,
 }: Props) {
   return (
     <header className={s.stack}>
@@ -52,6 +53,29 @@ export default function ExpedienteHeader({
           <Link href={volver.href}>{volver.label}</Link>
           <span className={s.soft}>/ {codigo}</span>
         </nav>
+      )}
+
+      {asesorNombre !== undefined && (
+        <div className={s.advisorBar}>
+          <div className={s.advisorInfo}>
+            <strong className={s.advisorName}>
+              {asesorNombre || "Sin asesor asignado"}
+            </strong>
+
+            <span className={s.advisorLabel}>
+              Asesor asignado
+            </span>
+          </div>
+
+          <div
+            className={s.advisorAvatar}
+            aria-hidden="true"
+          >
+            {asesorNombre
+              ? iniciales(asesorNombre)
+              : "—"}
+          </div>
+        </div>
       )}
 
       <div className={s.hero}>

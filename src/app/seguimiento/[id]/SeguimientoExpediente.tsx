@@ -27,6 +27,7 @@ type Paso = {
 };
 
 type Expediente = {
+  asesorNombre?: string;
   id: string;
   nombre: string;
   ci: string;
@@ -95,6 +96,7 @@ const expedientes: Record<string, Expediente> = {
   "KIVO-WEB-001-2026-LP": {
     id: "KIVO-WEB-001-2026-LP",
     nombre: "Gabriel Iglesias",
+    asesorNombre: "Asesor 1",
     ci: "No disponible",
     telefono: "No disponible",
     email: "cliente_1@example.com",
@@ -292,6 +294,7 @@ export default function SeguimientoExpediente({
       <ExpedienteHeader
         volver={{ href: "/seguimiento", label: "Seguimiento" }}
         nombre={expediente.nombre}
+        asesorNombre={expediente.asesorNombre ?? null}
         codigo={expediente.id}
         estado={{ label: expediente.estado, bg: tinta.bg, color: tinta.fg }}
         ci={expediente.ci}
